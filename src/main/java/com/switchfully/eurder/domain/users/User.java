@@ -4,7 +4,7 @@ import com.switchfully.eurder.security.Role;
 
 import java.util.UUID;
 
-public class Customer {
+public class User {
 
     private final UUID id;
     private final String firstName;
@@ -16,7 +16,7 @@ public class Customer {
     private Role role;
     private String password;        //temporary 'security'
 
-    public Customer(String firstName, String lastName, String emailAddress, Address address, String phoneNumber, String password) {
+    public User(String firstName, String lastName, String emailAddress, Address address, String phoneNumber, String password) {
         this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,6 +29,42 @@ public class Customer {
 
     //todo: maybe replace with builder (obligated final fields)
 
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void promoteRoleToAdmin() {
+        this.role = Role.ADMIN;
+    }
+
+    public void demoteRoleToCustomer(){
+        this.role = Role.CUSTOMER;
+    }
 
     @Override
     public String toString() {
