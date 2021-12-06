@@ -1,4 +1,4 @@
-package com.switchfully.eurder.services;
+package com.switchfully.eurder.services.mappers;
 
 import com.switchfully.eurder.domain.users.User;
 import com.switchfully.eurder.services.dtos.CreateUserDTO;

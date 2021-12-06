@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<UserDTO> getAllUsers(@RequestHeader String authorization){
-        //todo: securityService.validateAuthorization(authorization, Features.GET_ALL_MEMBERS);
+        //todo: securityService.validateAuthorization(authorization, Features.GET_ALL_USERS);
         return userService.getAllUsers();
     }
 
@@ -34,7 +34,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO createNewCustomer(@RequestBody CreateUserDTO createUserDTO){
         return userService.save(createUserDTO);
-        //returns 403 Forbidden in postman? using auth key
+        //returns 403 Forbidden in postman? using auth key, check json input
     }
 
 

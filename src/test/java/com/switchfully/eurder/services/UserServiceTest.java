@@ -1,16 +1,13 @@
 package com.switchfully.eurder.services;
 
 import com.switchfully.eurder.domain.users.Address;
-import com.switchfully.eurder.domain.users.User;
 import com.switchfully.eurder.repositories.DefaultUserRepository;
-import com.switchfully.eurder.security.Role;
 import com.switchfully.eurder.services.dtos.CreateUserDTO;
 import com.switchfully.eurder.services.dtos.UserDTO;
+import com.switchfully.eurder.services.mappers.UserConverter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 

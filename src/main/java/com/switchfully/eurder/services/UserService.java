@@ -4,6 +4,7 @@ import com.switchfully.eurder.domain.users.User;
 import com.switchfully.eurder.repositories.DefaultUserRepository;
 import com.switchfully.eurder.services.dtos.CreateUserDTO;
 import com.switchfully.eurder.services.dtos.UserDTO;
+import com.switchfully.eurder.services.mappers.UserConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
