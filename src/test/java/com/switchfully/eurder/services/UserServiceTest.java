@@ -32,7 +32,7 @@ class UserServiceTest {
     @DisplayName("User Service Test")
     void saveNewUser_createsAndSavesNewUser_viaDTO(){
         Address testAddress = new Address("teststreet", 10, 9000, "Gent");
-        CreateUserDTO newUser = new CreateUserDTO("firstGuy", "Premier", "first@fin.com",  testAddress, "0476987654", Role.CUSTOMER, "password");
+        CreateUserDTO newUser = new CreateUserDTO("firstGuy", "Premier", "first@fin.com", "0476987654","password",  testAddress);
         UserDTO userToTest = testUserService.save(newUser);
 
         assertEquals(newUser.getFirstName(), userToTest.getFirsName());

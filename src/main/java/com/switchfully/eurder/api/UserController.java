@@ -2,13 +2,11 @@ package com.switchfully.eurder.api;
 
 import com.switchfully.eurder.services.SecurityService;
 import com.switchfully.eurder.services.UserService;
+import com.switchfully.eurder.services.dtos.CreateUserDTO;
 import com.switchfully.eurder.services.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,9 +25,16 @@ public class UserController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<UserDTO> getAllUsers(/* @RequestHeader String authorization */){
+    public List<UserDTO> getAllUsers(@RequestHeader String authorization){
         //todo: securityService.validateAuthorization(authorization, Features.GET_ALL_MEMBERS);
         return userService.getAllUsers();
+    }
+
+    @PostMapping(path = "/register", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDTO createNewCustomer(@RequestBody CreateUserDTO createUserDTO){
+        return userService.save(createUserDTO);
+        //returns 403 Forbidden in postman? using auth key
     }
 
 

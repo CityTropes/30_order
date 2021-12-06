@@ -16,15 +16,15 @@ public class CreateUserDTO {
     private final String password;
 
     //nullcheck?
-    public CreateUserDTO(String firstName, String lastName, String emailAddress, Address address, String phoneNumber, Role role, String password) {
+    public CreateUserDTO(String firstName, String lastName, String emailAddress, String phoneNumber, String password, Address address) {
         this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
-        this.address = address;
         this.phoneNumber = phoneNumber;
-        this.role = role;
+        this.role = Role.CUSTOMER;
         this.password = password;
+        this.address = address;
         /**
          * Created an extra private constructor, otherwise Postman can't read the JSON.
          */

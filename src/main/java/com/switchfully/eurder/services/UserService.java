@@ -23,7 +23,7 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public UserDTO save(CreateUserDTO createUserDTO) {
-        //check if user can be saved (validator)
+        //todo: check if user can be saved (validator)
         User newUser = userConverter.convertCreateUserDtoToUser(createUserDTO);
         User savedUser = defaultUserRepository.save(newUser);                           //in 2 steps for clarity
         return userConverter.convertUserToUserDto(savedUser);
