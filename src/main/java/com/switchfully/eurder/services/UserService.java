@@ -7,6 +7,7 @@ import com.switchfully.eurder.services.dtos.UserDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserServiceInterface {
@@ -30,7 +31,10 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public List<UserDTO> getAllUsers() {
-        return null;
+        List<User> userList = defaultUserRepository.getAllUsers();
+        return userList.stream()
+                .map(userConverter::convertUserToUserDto)
+                .collect(Collectors.toList());
     }
 
 }
