@@ -42,11 +42,11 @@ public class SecurityService {
         return user;
     }
 
-    private boolean canHaveAccessTo(Feature feature, Role role) {
+    public boolean canHaveAccessTo(Feature feature, Role role) {
         return role.getListOfFeatures().contains(feature);
     }
 
-    private boolean doesPasswordMatch(String givenPassword, String userPassword) {
+    protected boolean doesPasswordMatch(String givenPassword, String userPassword) {
         return givenPassword.equals(userPassword);
     }
 
