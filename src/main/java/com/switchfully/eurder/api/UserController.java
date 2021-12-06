@@ -32,7 +32,7 @@ public class UserController {
 
     @PostMapping(path = "/register", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDTO createNewCustomer(@RequestBody CreateUserDTO createUserDTO){
+    public UserDTO registerNewCustomer(@RequestBody CreateUserDTO createUserDTO){
         return userService.save(createUserDTO);
         //returns 403 Forbidden in postman? using auth key, check json input
     }
