@@ -11,7 +11,7 @@ public class EurderApplication {
         SpringApplication.run(EurderApplication.class, args);
 
 
-        System.out.println("ending main...");
+        System.out.println("check: ending main...");
     }
 
 }
