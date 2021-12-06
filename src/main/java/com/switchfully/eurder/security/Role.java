@@ -1,15 +1,26 @@
 package com.switchfully.eurder.security;
 
-public enum Role {
-    CUSTOMER,
-    ADMIN;
+import java.util.List;
 
-    Role() {
+import static com.switchfully.eurder.security.Feature.*;
+
+public enum Role {
+    CUSTOMER(List.of(
+            //SEE_ALL_ITEMS,
+            REGISTER_NEW_CUSTOMER)),
+    ADMIN(List.of(
+            SEE_ALL_CUSTOMERS,
+            REGISTER_NEW_CUSTOMER,
+            SEE_ALL_ITEMS,
+            ADD_NEW_ITEM));
+
+    private final List<Feature> listOfFeatures;
+
+    Role(List<Feature> listFeatures) {
+        listOfFeatures = listFeatures;
     }
 
-
-    //todo: add list of features
-
+    public List<Feature> getListOfFeatures() {
+        return listOfFeatures;
+    }
 }
-
-

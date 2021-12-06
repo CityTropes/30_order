@@ -1,5 +1,6 @@
 package com.switchfully.eurder.api;
 
+import com.switchfully.eurder.security.Feature;
 import com.switchfully.eurder.services.SecurityService;
 import com.switchfully.eurder.services.UserService;
 import com.switchfully.eurder.services.dtos.CreateUserDTO;
@@ -26,7 +27,7 @@ public class UserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<UserDTO> getAllUsers(@RequestHeader String authorization){
-        //todo: securityService.validateAuthorization(authorization, Features.GET_ALL_USERS);
+        securityService.validateAuthorization(authorization, Feature.SEE_ALL_CUSTOMERS);
         return userService.getAllUsers();
     }
 
@@ -34,7 +35,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO registerNewCustomer(@RequestBody CreateUserDTO createUserDTO){
         return userService.save(createUserDTO);
-        //returns 403 Forbidden in postman? using auth key, check json input
+        //no authorization for register new customer
     }
 
 

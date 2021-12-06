@@ -58,6 +58,10 @@ public class User {
         return role;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void promoteRoleToAdmin() {
         this.role = Role.ADMIN;
     }
