@@ -6,7 +6,7 @@ import com.switchfully.eurder.services.dtos.UserDTO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserConverter {
+public class UserMapper {
 
     public User convertCreateUserDtoToUser(CreateUserDTO createUserDTO){
         User output = new User(

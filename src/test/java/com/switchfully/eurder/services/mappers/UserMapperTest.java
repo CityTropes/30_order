@@ -8,12 +8,10 @@ import com.switchfully.eurder.services.dtos.UserDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class UserConverterTest {
+class UserMapperTest {
 
     UserRepository testRepo = new DefaultUserRepository();
-    UserConverter test = new UserConverter();
+    UserMapper test = new UserMapper();
     UserDTO testDto = new UserDTO(testRepo.getUser("admin@eurder.com").getId(), "Default", "Admin", Role.ADMIN);
     User testAdmin = testRepo.getUser("admin@eurder.com");
 

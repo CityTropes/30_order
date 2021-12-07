@@ -1,29 +1,22 @@
 package com.switchfully.eurder.services;
 
-import com.switchfully.eurder.domain.users.Address;
 import com.switchfully.eurder.repositories.DefaultUserRepository;
-import com.switchfully.eurder.services.dtos.CreateUserDTO;
-import com.switchfully.eurder.services.dtos.UserDTO;
-import com.switchfully.eurder.services.mappers.UserConverter;
+import com.switchfully.eurder.services.mappers.UserMapper;
 import com.switchfully.eurder.services.validators.UserValidator;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class DefaultUserServiceTest {
 
     private DefaultUserRepository testRepository;
     private DefaultUserService testDefaultUserService;
-    private UserConverter userConverter;
+    private UserMapper userMapper;
     private UserValidator userValidator;
 
     @BeforeEach
     void beforeEach() {
         testRepository = new DefaultUserRepository();
-        this.userConverter = new UserConverter();
-        testDefaultUserService = new DefaultUserService(userConverter, testRepository, userValidator);
+        this.userMapper = new UserMapper();
+        testDefaultUserService = new DefaultUserService(userMapper, testRepository, userValidator);
         this.userValidator = new UserValidator();
 
     }

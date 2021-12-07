@@ -34,7 +34,7 @@ public class UserController {
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public UserDTO getUserById(@PathVariable("id") String id, @RequestHeader String authorization) {
-        securityService.validateAuthorization(authorization, Feature.SEE_ONE_CUSTOMER);
+        securityService.validateAuthorization(authorization, Feature.SEE_ONE_CUSTOMER); //only admin can see
         return defaultUserService.getUserById(id);
     }
 
@@ -42,8 +42,8 @@ public class UserController {
     @PostMapping(path = "/register", consumes = "application/json")         //check REST naming conventions
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO registerNewCustomer(@RequestBody CreateUserDTO createUserDTO) {
-        return defaultUserService.save(createUserDTO);
-        //no authorization for register new customer
+        return defaultUserService.save(createUserDTO);                        //no authorization for register new customer
+
     }
 
 

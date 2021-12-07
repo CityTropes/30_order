@@ -23,6 +23,9 @@ public class Aspects {
     @Pointcut("execution(* com.switchfully.eurder.*.*.registerNewCustomer(com.switchfully.eurder.services.dtos.CreateUserDTO))")
     public void registerNewCustomer() {}
 
+    @Pointcut("execution(* com.switchfully.eurder.*.*.saveItem(..))")
+    public void addNewItem() {}
+
 
     @AfterThrowing( pointcut = "allDataRetrievalRepos()",
             throwing ="exception" )
@@ -35,6 +38,13 @@ public class Aspects {
     @AfterReturning( pointcut = "registerNewCustomer()"/*, returning = "userDTO"*/)
     public void logRegisterNewCustomer(){
         logger.info("Info: a new customer has been registered. ");
+    }
+
+
+    @AfterReturning( pointcut = "addNewItem()"/*, returning = "userDTO"*/)
+    public void logAddNewItem(){
+        System.out.println("test add item log");
+        logger.info("Info: a new item  has been added. ");
     }
 
 }

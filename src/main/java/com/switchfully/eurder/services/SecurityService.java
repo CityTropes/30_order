@@ -33,11 +33,11 @@ public class SecurityService {
         if(user == null) {
             throw new UnknownCustomerException();
         }
-        if(!doesPasswordMatch(emailPassword.getPassword(), user.getPassword())) {
-            throw new WrongPasswordException();
-        }
         if(!canHaveAccessTo(feature, user.getRole())) {
             throw new UnauthorizedException();
+        }
+        if(!doesPasswordMatch(emailPassword.getPassword(), user.getPassword())) {
+            throw new WrongPasswordException();
         }
         return user;
     }

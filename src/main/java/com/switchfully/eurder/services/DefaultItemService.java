@@ -4,7 +4,7 @@ import com.switchfully.eurder.domain.items.Item;
 import com.switchfully.eurder.repositories.DefaultItemRepository;
 import com.switchfully.eurder.services.dtos.CreateItemDTO;
 import com.switchfully.eurder.services.dtos.ItemDTO;
-import com.switchfully.eurder.services.mappers.ItemConverter;
+import com.switchfully.eurder.services.mappers.ItemMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 @Service
 public class DefaultItemService implements ItemService {
 
-    private final ItemConverter itemConverter;
+    private final ItemMapper itemMapper;
     private final DefaultItemRepository defaultItemRepository;
 
-    public DefaultItemService(ItemConverter itemConverter, DefaultItemRepository defaultItemRepository) {
-        this.itemConverter = itemConverter;
+    public DefaultItemService(ItemMapper itemMapper, DefaultItemRepository defaultItemRepository) {
+        this.itemMapper = itemMapper;
         this.defaultItemRepository = defaultItemRepository;
     }
 
@@ -25,16 +25,16 @@ public class DefaultItemService implements ItemService {
     @Override
     public ItemDTO save(CreateItemDTO createItemDTO) {
         //todo: check if item can be saved (validator)
-        Item newItem = itemConverter.convertCreateItemDtoToItem(createItemDTO);
+        Item newItem = itemMapper.convertCreateItemDtoToItem(createItemDTO);
         Item savedItem = defaultItemRepository.save(newItem);
-        return itemConverter.convertItemToItemDto(savedItem);
+        return itemMapper.convertItemToItemDto(savedItem);
     }
 
     @Override
     public List<ItemDTO> getAllItems() {
         List<Item> itemList = defaultItemRepository.getAllItems();
         return itemList.stream()
-                .map(itemConverter::convertItemToItemDto)
+                .map(itemMapper::convertItemToItemDto)
                 .collect(Collectors.toList());
     }
 }

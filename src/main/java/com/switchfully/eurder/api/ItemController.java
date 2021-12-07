@@ -30,11 +30,10 @@ public class ItemController {
     }
 
 
-    @PostMapping(path = "save-item", consumes = "application/json")
+    @PostMapping(path = "add-item", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemDTO saveItem(@RequestBody CreateItemDTO createItemDTO
-                            /*, @RequestHeader String authorization*/) { //save works, auth not implemented yet
-        //todo: implement validation in securityService
+    public ItemDTO saveItem(@RequestBody CreateItemDTO createItemDTO, @RequestHeader String authorization) {
+        securityService.validateAuthorization(authorization, Feature.ADD_NEW_ITEM);
         return defaultItemService.save(createItemDTO);
     }
 

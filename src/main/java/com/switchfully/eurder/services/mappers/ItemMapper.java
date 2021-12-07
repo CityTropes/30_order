@@ -6,7 +6,7 @@ import com.switchfully.eurder.services.dtos.ItemDTO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ItemConverter {
+public class ItemMapper {
 
     public Item convertCreateItemDtoToItem(CreateItemDTO createItemDTO) {
         Item output = new Item(
