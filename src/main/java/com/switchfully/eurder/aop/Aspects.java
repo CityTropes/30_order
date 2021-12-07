@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class Aspects {
+
+    //one logger to rule them all!
     private final Logger logger = LoggerFactory.getLogger(org.aspectj.lang.annotation.Aspect.class);
 
     @Pointcut("execution(* com.switchfully.eurder.*.*.*(..))")
