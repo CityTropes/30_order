@@ -3,16 +3,21 @@ package com.switchfully.eurder.domain.orders;
 import java.util.List;
 import java.util.UUID;
 
+import static com.switchfully.eurder.services.validators.AssertNotNull.assertAllParamsNotNull;
+
 public class Order {
 
     private final UUID orderId;
     private final UUID userID;
     private final List<ItemGroup> itemGroups;               // = new LinkedList<>(); //can queue or stack
+    private double totalPriceInEur;
 
     public Order(UUID userID, List<ItemGroup> itemGroups) {
+        assertAllParamsNotNull(userID, itemGroups);
         this.orderId = UUID.randomUUID();
         this.userID = userID;
         this.itemGroups = itemGroups;
+        this.totalPriceInEur = calculateTotalPriceInEur(itemGroups);
     }
 
     public UUID getOrderId() {
@@ -25,5 +30,10 @@ public class Order {
 
     public List<ItemGroup> getItemGroups() {
         return itemGroups;
+    }
+
+    public double calculateTotalPriceInEur(List<ItemGroup> itemGroups){
+        //todo: calculateTotalPrice
+        return 0;
     }
 }

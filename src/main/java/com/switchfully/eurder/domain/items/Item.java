@@ -3,6 +3,8 @@ package com.switchfully.eurder.domain.items;
 import java.util.Objects;
 import java.util.UUID;
 
+import static com.switchfully.eurder.services.validators.AssertNotNull.assertAllParamsNotNull;
+
 public class Item {
 
     //todo: check if newly added item doesn't exist already
@@ -14,6 +16,7 @@ public class Item {
     private int amountInStock;
 
     public Item(String itemName, String itemDescription, double itemPriceInEur, int amountInStock) {
+        assertAllParamsNotNull(itemName, itemDescription, itemPriceInEur, amountInStock);
         this.itemId = UUID.randomUUID();
         this.itemName = itemName;
         this.itemDescription = itemDescription;

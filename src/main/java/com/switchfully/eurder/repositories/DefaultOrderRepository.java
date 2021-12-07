@@ -2,12 +2,14 @@ package com.switchfully.eurder.repositories;
 
 import com.switchfully.eurder.customexceptions.UnknownCustomerException;
 import com.switchfully.eurder.domain.orders.Order;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Repository
 public class DefaultOrderRepository implements OrderRepository {
 
     private final ConcurrentHashMap<UUID, Order> ordersById;

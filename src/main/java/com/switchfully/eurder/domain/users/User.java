@@ -4,6 +4,8 @@ import com.switchfully.eurder.security.Role;
 
 import java.util.UUID;
 
+import static com.switchfully.eurder.services.validators.AssertNotNull.assertAllParamsNotNull;
+
 public class User {
 
     private final UUID id;
@@ -17,6 +19,7 @@ public class User {
     private String password;        //temporary 'security'
 
     public User(String firstName, String lastName, String emailAddress, Address address, String phoneNumber, String password) {
+        assertAllParamsNotNull(firstName, lastName, emailAddress, address, phoneNumber, password);
         this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;

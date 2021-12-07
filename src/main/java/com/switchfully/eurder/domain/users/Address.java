@@ -1,5 +1,7 @@
 package com.switchfully.eurder.domain.users;
 
+import static com.switchfully.eurder.services.validators.AssertNotNull.assertAllParamsNotNull;
+
 public class Address {
 
     private final String streetName;
@@ -8,6 +10,7 @@ public class Address {
     private final String city;
 
     public Address(String streetName, int streetNumber, int postalCode, String city) {
+        assertAllParamsNotNull(streetName, streetNumber, postalCode, city);
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.postalCode = postalCode;

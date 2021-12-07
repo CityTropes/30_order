@@ -31,7 +31,7 @@ public class SecurityService {
         SecureUser emailPassword = getEmailAndPassword(authorization);
         User user = userRepository.getUser(emailPassword.getEmail());
         if(user == null) {
-            throw new UnknownCustomerException();
+            throw new UnauthorizedException();
         }
         if(!canHaveAccessTo(feature, user.getRole())) {
             throw new UnauthorizedException();

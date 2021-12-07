@@ -12,6 +12,8 @@ import java.io.IOException;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
+//todo: refactor this
+
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -42,7 +44,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(WrongPasswordException.class)
     protected void wrongPassword (WrongPasswordException exception,
                                   HttpServletResponse response) throws IOException{
-        response.sendError(NOT_FOUND.value(), exception.getMessage());
+        response.sendError(UNAUTHORIZED.value(), exception.getMessage());
     }
 
     @ExceptionHandler(NotUniqueException.class)
