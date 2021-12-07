@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class ItemGroup {
+    private final UUID itemGroupId;
     private final UUID itemId;
     private final int itemAmount;
     private final LocalDate shippingDate;
@@ -12,12 +13,13 @@ public class ItemGroup {
         this.itemId = itemId;
         this.itemAmount = itemAmount;
         this.shippingDate = shippingDate;
+        this.itemGroupId = UUID.randomUUID();
         //todo: check availability in stock to determine shippingDate
     }
 
-    public UUID getItemId() {
-        return itemId;
-    }
+    public UUID getItemGroupId() { return itemGroupId; }
+
+    public UUID getItemId() { return itemId; }
 
     public int getItemAmount() {
         return itemAmount;

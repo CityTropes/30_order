@@ -5,22 +5,14 @@ import com.switchfully.eurder.domain.orders.ItemGroup;
 import java.util.List;
 import java.util.UUID;
 
-public class OrderDTO {
+public class CreateOrderDTO {
 
-    private final UUID orderId;
     private final UUID userID;
     private final List<ItemGroup> itemGroups;
-    private final double totalPriceInEur;
 
-    public OrderDTO(UUID orderId, UUID userID, List<ItemGroup> itemGroups, double totalPriceInEur) {
-        this.orderId = orderId;
+    public CreateOrderDTO(UUID userID, List<ItemGroup> itemGroups) {
         this.userID = userID;
         this.itemGroups = itemGroups;
-        this.totalPriceInEur = totalPriceInEur;
-    }
-
-    public UUID getOrderId() {
-        return orderId;
     }
 
     public UUID getUserID() {
@@ -30,9 +22,4 @@ public class OrderDTO {
     public List<ItemGroup> getItemGroups() {
         return itemGroups;
     }
-
-    public double getTotalPriceInEur() {
-        return totalPriceInEur;
-    }
-
 }

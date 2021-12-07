@@ -1,22 +1,18 @@
 package com.switchfully.eurder.services;
 
-
 import com.switchfully.eurder.customexceptions.UnauthorizedException;
-import com.switchfully.eurder.customexceptions.UnknownCustomerException;
 import com.switchfully.eurder.customexceptions.WrongPasswordException;
 import com.switchfully.eurder.domain.users.User;
 import com.switchfully.eurder.repositories.UserRepository;
 import com.switchfully.eurder.security.Feature;
 import com.switchfully.eurder.security.Role;
-import com.switchfully.eurder.security.SecureUser;
+import com.switchfully.eurder.security.UserLoginDecodedDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
 
 @Service
 public class SecurityService {
-
-    //todo: logger!
 
     private final UserRepository userRepository;
 
@@ -28,18 +24,25 @@ public class SecurityService {
         if(authorization == null) {
             throw new UnauthorizedException();
         }
-        SecureUser emailPassword = getEmailAndPassword(authorization);
-        User user = userRepository.getUser(emailPassword.getEmail());
+        UserLoginDecodedDTO emailPasswordCombo = extractAndDecodeEmailAndPassword(authorization);
+        User user = userRepository.getUser(emailPasswordCombo.getEmail());
         if(user == null) {
             throw new UnauthorizedException();
         }
         if(!canHaveAccessTo(feature, user.getRole())) {
             throw new UnauthorizedException();
         }
-        if(!doesPasswordMatch(emailPassword.getPassword(), user.getPassword())) {
+        if(!doesPasswordMatch(emailPasswordCombo.getPassword(), user.getPassword())) {
             throw new WrongPasswordException();
         }
         return user;
+    }
+
+    private UserLoginDecodedDTO extractAndDecodeEmailAndPassword(String authorization) {
+        String decodedUsernameAndPassword = new String(Base64.getDecoder().decode(authorization.substring("Basic ".length())));
+        String username = decodedUsernameAndPassword.substring(0, decodedUsernameAndPassword.indexOf(":"));
+        String password = decodedUsernameAndPassword.substring(decodedUsernameAndPassword.indexOf(":") + 1);
+        return new UserLoginDecodedDTO(username, password);
     }
 
     public boolean canHaveAccessTo(Feature feature, Role role) {
@@ -50,10 +53,5 @@ public class SecurityService {
         return givenPassword.equals(userPassword);
     }
 
-    private SecureUser getEmailAndPassword(String authorization) {
-        String decodedUsernameAndPassword = new String(Base64.getDecoder().decode(authorization.substring("Basic ".length())));
-        String username = decodedUsernameAndPassword.substring(0, decodedUsernameAndPassword.indexOf(":"));
-        String password = decodedUsernameAndPassword.substring(decodedUsernameAndPassword.indexOf(":") + 1);
-        return new SecureUser(username, password);
-    }
+
 }

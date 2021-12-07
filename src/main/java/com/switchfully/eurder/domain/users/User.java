@@ -1,5 +1,6 @@
 package com.switchfully.eurder.domain.users;
 
+import com.switchfully.eurder.repositories.DefaultItemGroupRepository;
 import com.switchfully.eurder.security.Role;
 
 import java.util.UUID;
@@ -11,12 +12,12 @@ public class User {
     private final UUID id;
     private final String firstName;
     private final String lastName;
-    private String emailAddress;            //email = login/username
+    private String emailAddress;                                        //email = login/username
     private Address address;
     private String phoneNumber;
 
     private Role role;
-    private String password;        //temporary 'security'
+    private String password;                                            //temporary 'security'
 
     public User(String firstName, String lastName, String emailAddress, Address address, String phoneNumber, String password) {
         assertAllParamsNotNull(firstName, lastName, emailAddress, address, phoneNumber, password);
@@ -72,7 +73,6 @@ public class User {
     public void demoteRoleToCustomer(){
         this.role = Role.CUSTOMER;
     }
-
 
 
     @Override

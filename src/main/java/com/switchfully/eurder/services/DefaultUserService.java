@@ -25,10 +25,10 @@ public class DefaultUserService implements UserService {
         this.userValidator = userValidator;
     }
 
+    @Override
     public UserDTO getUserById(String uuid){
         //todo: nullchecks
         User savedUser = defaultUserRepository.getUserById(uuid);
-
         return userMapper.convertUserToUserDto(savedUser);
     }
 

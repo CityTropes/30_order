@@ -14,8 +14,9 @@
   - fixed exception when no Header is provided (MissingRequestHeaderException), added PointCut to log new items
   - added custom exceptions, nullcheck in validator, ex handler (todo: refactor handler)
   - added ItemGroup, Order, order repo, dto. Refactoring aspects, naming + postman tests
-
-
+  - tested edge cases and exceptions, implementing story 3 (partially)
+  - UserLoginDecodedDTO, story 3: OrderMapper, ItemGroup, ItemGroupRepo
+  
 __________________________________________________________________________________________________
 
 Assignment source: https://github.com/switchfully

@@ -32,8 +32,27 @@ public class Order {
         return itemGroups;
     }
 
-    public double calculateTotalPriceInEur(List<ItemGroup> itemGroups){
-        //todo: calculateTotalPrice
+    public double getTotalPriceInEur() {
+        return totalPriceInEur;
+    }
+
+    public double calculateTotalPriceInEur(List<ItemGroup> itemGroups) {
+        //todo: calculateTotalPrice in service?
+        /*
+        public int calculateTotalPriceOfOrder(List<ItemGroup> itemGroups) {
+            int price = 0;
+            int amount = 0;
+            for (ItemGroup item : itemGroups) {
+                Item itemInItemGroup = itemRepository.getItemById(item.getSelectedItemId());
+                price = itemInItemGroup.getPrice();
+                amount = item.getAmount();
+
+            }
+            return price * amount;
+        }
+
+         */
         return 0;
     }
+
 }

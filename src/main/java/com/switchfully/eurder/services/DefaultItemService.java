@@ -24,7 +24,7 @@ public class DefaultItemService implements ItemService {
 
     @Override
     public ItemDTO save(CreateItemDTO createItemDTO) {
-        //todo: check if item can be saved (validator)
+        //todo: check if item can be saved (validator)?
         Item newItem = itemMapper.convertCreateItemDtoToItem(createItemDTO);
         Item savedItem = defaultItemRepository.save(newItem);
         return itemMapper.convertItemToItemDto(savedItem);
