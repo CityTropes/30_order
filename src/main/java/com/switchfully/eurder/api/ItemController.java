@@ -1,6 +1,6 @@
 package com.switchfully.eurder.api;
 
-import com.switchfully.eurder.services.ItemService;
+import com.switchfully.eurder.services.DefaultItemService;
 import com.switchfully.eurder.services.SecurityService;
 import com.switchfully.eurder.services.dtos.CreateItemDTO;
 import com.switchfully.eurder.services.dtos.ItemDTO;
@@ -13,11 +13,11 @@ import java.util.List;
 @RequestMapping(path = "items", produces = "application/json")
 public class ItemController {
 
-    private final ItemService itemService;
+    private final DefaultItemService defaultItemService;
     private final SecurityService securityService; //not implemented yet
 
-    public ItemController(ItemService itemService, SecurityService securityService) {
-        this.itemService = itemService;
+    public ItemController(DefaultItemService defaultItemService, SecurityService securityService) {
+        this.defaultItemService = defaultItemService;
         this.securityService = securityService;
     }
 
@@ -25,7 +25,7 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     public List<ItemDTO> getAllItems(@RequestHeader String authorization){
         //todo: securityService.validateAuthorization(authorization, Features.GET_ALL_ITEMS);
-        return itemService.getAllItems();
+        return defaultItemService.getAllItems();
     }
 
 
@@ -34,7 +34,7 @@ public class ItemController {
     public ItemDTO saveItem(@RequestBody CreateItemDTO createItemDTO
                             /*, @RequestHeader String authorization*/) { //not implemented yet
         //todo: implement validation in securityService
-        return itemService.save(createItemDTO);
+        return defaultItemService.save(createItemDTO);
     }
 
 }

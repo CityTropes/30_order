@@ -24,12 +24,18 @@ public class DefaultItemRepository implements ItemRepository{
 
     @Override
     public List<Item> getAllItems() {
-        //assert not empty
+        //assert not empty, not needed?
         return new ArrayList<>(itemsById.values());
     }
 
     @Override
-    public Item getItem(String itemName) {
+    public Item getItemByName(String itemName) {
+        //todo
+        return null;
+    }
+
+    @Override
+    public Item getItemById(UUID uuid) {
         //todo
         return null;
     }

@@ -4,8 +4,10 @@ import com.switchfully.eurder.domain.items.Item;
 import com.switchfully.eurder.domain.users.User;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ItemRepository {
     List<Item> getAllItems();
-    Item getItem(String itemName);
+    Item getItemByName(String itemName);
+    Item getItemById(UUID uuid);
 }

@@ -2,7 +2,7 @@ package com.switchfully.eurder.api;
 
 import com.switchfully.eurder.security.Feature;
 import com.switchfully.eurder.services.SecurityService;
-import com.switchfully.eurder.services.UserService;
+import com.switchfully.eurder.services.DefaultUserService;
 import com.switchfully.eurder.services.dtos.CreateUserDTO;
 import com.switchfully.eurder.services.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,26 +15,26 @@ import java.util.List;
 @RequestMapping(path = "/users", produces = "application/json")
 public class UserController {
 
-    private final UserService userService;
+    private final DefaultUserService defaultUserService;
     private final SecurityService securityService;
 
     @Autowired
-    public UserController(UserService userService, SecurityService securityService) {
-        this.userService = userService;
+    public UserController(DefaultUserService defaultUserService, SecurityService securityService) {
+        this.defaultUserService = defaultUserService;
         this.securityService = securityService;
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<UserDTO> getAllUsers(@RequestHeader String authorization){
-        securityService.validateAuthorization(authorization, Feature.SEE_ALL_CUSTOMERS);
-        return userService.getAllUsers();
+        securityService.validateAuthorization(authorization, Feature.SEE_ALL_CUSTOMERS); //just to check
+        return defaultUserService.getAllUsers();
     }
 
-    @PostMapping(path = "/register", consumes = "application/json")
+    @PostMapping(path = "/register", consumes = "application/json")         //check REST naming conventions
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO registerNewCustomer(@RequestBody CreateUserDTO createUserDTO){
-        return userService.save(createUserDTO);
+        return defaultUserService.save(createUserDTO);
         //no authorization for register new customer
     }
 

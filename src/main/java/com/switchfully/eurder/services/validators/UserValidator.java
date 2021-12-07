@@ -1,6 +1,7 @@
 package com.switchfully.eurder.services.validators;
 
 import com.switchfully.eurder.domain.users.User;
+import com.switchfully.eurder.repositories.UserRepository;
 import com.switchfully.eurder.services.dtos.CreateUserDTO;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +17,8 @@ public class UserValidator {
         return RegexPattern.emailPattern.matcher(createUserDTO.getEmailAddress()).matches();
     }
 
-
-    /*
-    private boolean checkEmailUser(CreateUserDTO userToCheck, UserRepository userRepository) {
-        return userRepository.getUsersById()
+    private boolean assertEmailAddressIsUnique(CreateUserDTO userToCheck, UserRepository userRepository) {
+        return userRepository.getMapOfAllUsersById()
                 .values()
                 .stream()
                 .map(getEmailUser)
@@ -28,6 +27,10 @@ public class UserValidator {
                         .toLowerCase()));
     }
 
-     */
+    public boolean canUserBeSaved(CreateUserDTO createUserDTO , UserRepository userRepository) {
+        return assertEmailAddressIsUnique(createUserDTO, userRepository)
+                && validateEmail(createUserDTO);
+    }
+
 
 }

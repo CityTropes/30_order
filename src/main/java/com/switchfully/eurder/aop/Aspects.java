@@ -1,9 +1,11 @@
 package com.switchfully.eurder.aop;
 
 
-import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -22,19 +24,17 @@ public class Aspects {
     public void registerNewCustomer() {}
 
 
-
     @AfterThrowing( pointcut = "allDataRetrievalRepos()",
             throwing ="exception" )
-    public void log(JoinPoint joinPoint, Throwable exception) {
+    public void logExceptions(JoinPoint joinPoint, Throwable exception) {
         String message = exception.getMessage();
         String method = joinPoint.getSignature().toString();
         logger.warn(message.concat("This for the method: ").concat(method));
     }
 
     @AfterReturning( pointcut = "registerNewCustomer()"/*, returning = "userDTO"*/)
-    public void logRegister(){
-        String message = "Info: a new customer has been registered. ";
-        logger.info(message);
+    public void logRegisterNewCustomer(){
+        logger.info("Info: a new customer has been registered. ");
     }
 
 }

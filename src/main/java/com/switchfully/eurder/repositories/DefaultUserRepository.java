@@ -33,6 +33,10 @@ public class DefaultUserRepository implements UserRepository {
         return user;
     }
 
+    @Override
+    public ConcurrentHashMap<UUID, User> getMapOfAllUsersById() {
+        return usersById;
+    }
 
     @Override
     public List<User> getAllUsers() {
@@ -48,14 +52,5 @@ public class DefaultUserRepository implements UserRepository {
                 .findFirst()
                 .orElseThrow(UnknownCustomerException::new);
     }
-
-    /*
-    @Override
-    public ConcurrentHashMap<UUID, User> getUserById() {
-        return usersById;
-    }
-
- */
-
 
 }
