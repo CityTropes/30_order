@@ -1,11 +1,11 @@
 package com.switchfully.eurder.security;
 
-public class UserLoginDecodedDTO {
+public class UserLoginDecoded {
 
     private final String email;
     private final String password;
 
-    public UserLoginDecodedDTO(String email, String password) {
+    public UserLoginDecoded(String email, String password) {
         this.email = email;
         this.password = password;
     }

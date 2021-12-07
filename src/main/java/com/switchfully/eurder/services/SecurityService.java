@@ -6,7 +6,7 @@ import com.switchfully.eurder.domain.users.User;
 import com.switchfully.eurder.repositories.UserRepository;
 import com.switchfully.eurder.security.Feature;
 import com.switchfully.eurder.security.Role;
-import com.switchfully.eurder.security.UserLoginDecodedDTO;
+import com.switchfully.eurder.security.UserLoginDecoded;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
@@ -24,7 +24,7 @@ public class SecurityService {
         if(authorization == null) {
             throw new UnauthorizedException();
         }
-        UserLoginDecodedDTO emailPasswordCombo = extractAndDecodeEmailAndPassword(authorization);
+        UserLoginDecoded emailPasswordCombo = extractAndDecodeEmailAndPassword(authorization);
         User user = userRepository.getUser(emailPasswordCombo.getEmail());
         if(user == null) {
             throw new UnauthorizedException();
@@ -38,11 +38,11 @@ public class SecurityService {
         return user;
     }
 
-    private UserLoginDecodedDTO extractAndDecodeEmailAndPassword(String authorization) {
+    private UserLoginDecoded extractAndDecodeEmailAndPassword(String authorization) {
         String decodedUsernameAndPassword = new String(Base64.getDecoder().decode(authorization.substring("Basic ".length())));
         String username = decodedUsernameAndPassword.substring(0, decodedUsernameAndPassword.indexOf(":"));
         String password = decodedUsernameAndPassword.substring(decodedUsernameAndPassword.indexOf(":") + 1);
-        return new UserLoginDecodedDTO(username, password);
+        return new UserLoginDecoded(username, password);
     }
 
     public boolean canHaveAccessTo(Feature feature, Role role) {

@@ -8,14 +8,14 @@
   - order: Story 2 - added Item, Dto's, Services, Repo, Controller, Tests (todo: tests, validators, authorization)
   - added authorization, securityservice + Postman test usercontroller (added features, exceptions, handler)
   - added regex, validator email & test
-  - implement AspectJ, exception logging via Aspect
-  - added PointCut in Aspect: logging new registrations
-  - story 1, 2, 7, 8 & seeAllItems (with authorization) + basic postman tests ok (todo: edge cases/exceptions)
+  - implemented AspectJ, exception logging via Aspect + Postman tests
+  - added PointCut in Aspects: logging new registrations
+  - story 1, 2, 7, 8 & seeAllItems (with authorization) + basic Postman tests ok (todo: edge cases/exceptions)
   - fixed exception when no Header is provided (MissingRequestHeaderException), added PointCut to log new items
   - added custom exceptions, nullcheck in validator, ex handler (todo: refactor handler)
-  - added ItemGroup, Order, order repo, dto. Refactoring aspects, naming + postman tests
+  - added ItemGroup, Order, order repo, dto. Refactoring aspects, naming + Postman tests
   - tested edge cases and exceptions, implementing story 3 (partially)
-  - UserLoginDecodedDTO, story 3: OrderMapper, ItemGroup, ItemGroupRepo
+  - added UserLoginDecoded, story 3: OrderMapper, ItemGroup, ItemGroupRepo
   
 __________________________________________________________________________________________________
 
