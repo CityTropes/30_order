@@ -1,5 +1,6 @@
 package com.switchfully.eurder.services.validators;
 
+import com.switchfully.eurder.customexceptions.InvalidInputException;
 import com.switchfully.eurder.domain.users.User;
 import com.switchfully.eurder.repositories.UserRepository;
 import com.switchfully.eurder.services.dtos.CreateUserDTO;
@@ -27,10 +28,28 @@ public class UserValidator {
                         .toLowerCase()));
     }
 
-    public boolean canUserBeSaved(CreateUserDTO createUserDTO , UserRepository userRepository) {
-        return assertEmailAddressIsUnique(createUserDTO, userRepository)
-                && validateEmail(createUserDTO);
+    private boolean assertNoFieldsAreNullOrEmpty(CreateUserDTO createUserDTO){
+        assertNotNullOrEmpty(createUserDTO.getEmailAddress());
+        assertNotNullOrEmpty(createUserDTO.getFirstName());
+        assertNotNullOrEmpty(createUserDTO.getLastName());
+        assertNotNullOrEmpty(createUserDTO.getAddress().getStreetName());
+        assertNotNullOrEmpty(createUserDTO.getAddress().getCity());
+        assertNotNullOrEmpty(createUserDTO.getPhoneNumber());
+        return true;
     }
 
+    private void assertNotNullOrEmpty(String input){
+        if(input == null || input.trim().equals("")){
+            throw new InvalidInputException("The given input can't contain null or empty fields (in user and address)! ");
+        }
+    }
+
+    public boolean canUserBeSaved(CreateUserDTO createUserDTO , UserRepository userRepository) {
+        return assertEmailAddressIsUnique(createUserDTO, userRepository)
+                && validateEmail(createUserDTO)
+                && assertNoFieldsAreNullOrEmpty(createUserDTO);
+    }
+
+    //todo: nullcheck when creating new user, address, item, ...
 
 }

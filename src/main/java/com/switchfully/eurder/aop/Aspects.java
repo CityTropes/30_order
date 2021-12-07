@@ -43,7 +43,6 @@ public class Aspects {
 
     @AfterReturning( pointcut = "addNewItem()"/*, returning = "userDTO"*/)
     public void logAddNewItem(){
-        System.out.println("test add item log");
         logger.info("Info: a new item  has been added. ");
     }
 

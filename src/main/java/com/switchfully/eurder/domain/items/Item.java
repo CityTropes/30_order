@@ -5,6 +5,8 @@ import java.util.UUID;
 
 public class Item {
 
+    //todo: check if newly added item doesn't exist already
+
     private final UUID itemId;
     private String itemName;
     private String itemDescription;
