@@ -18,7 +18,7 @@ public class Aspects {
     private final Logger logger = LoggerFactory.getLogger(org.aspectj.lang.annotation.Aspect.class);
 
     @Pointcut("execution(* com.switchfully.eurder.*.*.*(..))")
-    public void allDataRetrievalRepos() {}
+    public void catchAllExceptionsInAllMethods() {}
 
     @Pointcut("execution(* com.switchfully.eurder.*.*.registerNewCustomer(com.switchfully.eurder.services.dtos.CreateUserDTO))")
     public void registerNewCustomer() {}
@@ -27,7 +27,7 @@ public class Aspects {
     public void addNewItem() {}
 
 
-    @AfterThrowing( pointcut = "allDataRetrievalRepos()",
+    @AfterThrowing( pointcut = "catchAllExceptionsInAllMethods()",
             throwing ="exception" )
     public void logExceptions(JoinPoint joinPoint, Throwable exception) {
         String message = exception.getMessage();
