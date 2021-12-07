@@ -25,6 +25,13 @@ public class DefaultUserService implements UserService {
         this.userValidator = userValidator;
     }
 
+    public UserDTO getUserById(String uuid){
+        //todo: nullchecks
+        User savedUser = defaultUserRepository.getUserById(uuid);
+
+        return userConverter.convertUserToUserDto(savedUser);
+    }
+
     @Override
     public UserDTO save(CreateUserDTO createUserDTO) {
         if (userValidator.canUserBeSaved(createUserDTO, defaultUserRepository)) {

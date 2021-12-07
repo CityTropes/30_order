@@ -6,9 +6,9 @@ import static com.switchfully.eurder.security.Feature.*;
 
 public enum Role {
     CUSTOMER(List.of(
-            //SEE_ALL_ITEMS,
             REGISTER_NEW_CUSTOMER)),
     ADMIN(List.of(
+            SEE_ONE_CUSTOMER,
             SEE_ALL_CUSTOMERS,
             REGISTER_NEW_CUSTOMER,
             SEE_ALL_ITEMS,

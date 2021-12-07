@@ -33,6 +33,14 @@ public class DefaultUserRepository implements UserRepository {
         return user;
     }
 
+    public User getUserById(String uuid) {
+        return usersById.values()
+                .stream()
+                .filter(user -> user.getId().toString().equals(uuid))
+                .findFirst()
+                .orElseThrow(UnknownCustomerException::new);
+    }
+
     @Override
     public ConcurrentHashMap<UUID, User> getMapOfAllUsersById() {
         return usersById;

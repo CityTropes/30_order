@@ -26,17 +26,26 @@ public class UserController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<UserDTO> getAllUsers(@RequestHeader String authorization){
-        securityService.validateAuthorization(authorization, Feature.SEE_ALL_CUSTOMERS); //just to check
+    public List<UserDTO> getAllUsers(@RequestHeader String authorization) {
+        securityService.validateAuthorization(authorization, Feature.SEE_ALL_CUSTOMERS); //just to check, only admin can see
         return defaultUserService.getAllUsers();
     }
 
+    @GetMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserDTO getUserById(@PathVariable("id") String id, @RequestHeader String authorization) {
+        securityService.validateAuthorization(authorization, Feature.SEE_ONE_CUSTOMER);
+        return defaultUserService.getUserById(id);
+    }
+
+
     @PostMapping(path = "/register", consumes = "application/json")         //check REST naming conventions
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDTO registerNewCustomer(@RequestBody CreateUserDTO createUserDTO){
+    public UserDTO registerNewCustomer(@RequestBody CreateUserDTO createUserDTO) {
         return defaultUserService.save(createUserDTO);
         //no authorization for register new customer
     }
 
 
+    //todo: some exceptions & edge cases!
 }
