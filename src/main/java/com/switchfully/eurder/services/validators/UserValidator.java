@@ -1,7 +1,6 @@
 package com.switchfully.eurder.services.validators;
 
 import com.switchfully.eurder.domain.users.User;
-import com.switchfully.eurder.repositories.UserRepository;
 import com.switchfully.eurder.services.dtos.CreateUserDTO;
 import org.springframework.stereotype.Component;
 
