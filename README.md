@@ -8,7 +8,7 @@
   - order: Story 2 - added Item, Dto's, Services, Repo, Controller, Tests (todo: tests, validators, authorization)
   - added authorization, securityservice + Postman test usercontroller (added features, exceptions, handler)
   - added regex, validator email & test
-  - implement AspectJ en exception logging
+  - implement AspectJ, exception logging via Aspect
   - added PointCut in Aspect: logging new registrations
   - story 1, 2, 7, 8 & seeAllItems (with authorization) + basic postman tests ok (todo: edge cases/exceptions)
 
