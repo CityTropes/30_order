@@ -24,7 +24,6 @@ public class DefaultItemRepository implements ItemRepository{
 
     @Override
     public List<Item> getAllItems() {
-        //assert not empty, not needed?
         return new ArrayList<>(itemsById.values());
     }
 

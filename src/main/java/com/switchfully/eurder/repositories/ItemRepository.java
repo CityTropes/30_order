@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ItemRepository {
+
+    //todo: add save
+
     List<Item> getAllItems();
     Item getItemByName(String itemName);
     Item getItemById(UUID uuid);

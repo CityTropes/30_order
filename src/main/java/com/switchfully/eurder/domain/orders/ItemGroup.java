@@ -12,7 +12,7 @@ public class ItemGroup {
         this.itemId = itemId;
         this.itemAmount = itemAmount;
         this.shippingDate = shippingDate;
-        //todo: check availability in stock
+        //todo: check availability in stock to determine shippingDate
     }
 
     public UUID getItemId() {

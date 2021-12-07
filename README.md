@@ -12,6 +12,8 @@
   - added PointCut in Aspect: logging new registrations
   - story 1, 2, 7, 8 & seeAllItems (with authorization) + basic postman tests ok (todo: edge cases/exceptions)
   - fixed exception when no Header is provided (MissingRequestHeaderException), added PointCut to log new items
+  - added custom exceptions, nullcheck in validator, ex handler (todo: refactor handler)
+  - added ItemGroup, Order, order repo, dto. Refactoring aspects, naming + postman tests
 
 
 __________________________________________________________________________________________________

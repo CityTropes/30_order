@@ -27,12 +27,11 @@ public class Aspects {
     public void addNewItem() {}
 
 
-    @AfterThrowing( pointcut = "catchAllExceptionsInAllMethods()",
-            throwing ="exception" )
+    @AfterThrowing( pointcut = "catchAllExceptionsInAllMethods()", throwing ="exception" )
     public void logExceptions(JoinPoint joinPoint, Throwable exception) {
         String message = exception.getMessage();
         String method = joinPoint.getSignature().toString();
-        logger.warn(message.concat("This for the method: ").concat(method));
+        logger.warn(message.concat(" Triggered by method: ").concat(method));
     }
 
     @AfterReturning( pointcut = "registerNewCustomer()"/*, returning = "userDTO"*/)
