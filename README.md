@@ -11,6 +11,7 @@
   - implement AspectJ, exception logging via Aspect
   - added PointCut in Aspect: logging new registrations
   - story 1, 2, 7, 8 & seeAllItems (with authorization) + basic postman tests ok (todo: edge cases/exceptions)
+  - fixed exception when no Header is provided (MissingRequestHeaderException), added PointCut to log new items
 
 
 __________________________________________________________________________________________________
