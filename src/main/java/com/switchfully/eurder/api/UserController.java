@@ -27,7 +27,7 @@ public class UserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<UserDTO> getAllUsers(@RequestHeader String authorization) {
-        securityService.validateAuthorization(authorization, Feature.SEE_ALL_CUSTOMERS); //just to check, only admin can see
+        securityService.validateAuthorization(authorization, Feature.SEE_ALL_CUSTOMERS); //only admin can see
         return defaultUserService.getAllUsers();
     }
 
