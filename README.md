@@ -18,6 +18,7 @@
   - added UserLoginDecoded, story 3: OrderMapper, ItemGroup, ItemGroupRepo
   - story 3: added repo's, mappers, order-/itemGroupServices, validator
   - improved test coverage
+  - added OrderService calculations (story 3) + tests
   
 __________________________________________________________________________________________________
 

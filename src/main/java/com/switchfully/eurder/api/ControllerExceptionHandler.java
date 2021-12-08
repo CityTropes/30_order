@@ -41,6 +41,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         response.sendError(NOT_FOUND.value(), exception.getMessage());
     }
 
+    @ExceptionHandler(UnknownItemException.class)
+    protected void unknownItem(UnknownItemException exception,
+                               HttpServletResponse response) throws IOException{
+        response.sendError(NOT_FOUND.value(), exception.getMessage());
+    }
+
     @ExceptionHandler(WrongPasswordException.class)
     protected void wrongPassword (WrongPasswordException exception,
                                   HttpServletResponse response) throws IOException{

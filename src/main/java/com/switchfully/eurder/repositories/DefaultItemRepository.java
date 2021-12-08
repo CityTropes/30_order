@@ -1,5 +1,6 @@
 package com.switchfully.eurder.repositories;
-import com.switchfully.eurder.customexceptions.UnknownCustomerException;
+
+import com.switchfully.eurder.customexceptions.UnknownItemException;
 import com.switchfully.eurder.domain.items.Item;
 import org.springframework.stereotype.Repository;
 
@@ -15,11 +16,17 @@ public class DefaultItemRepository implements ItemRepository{
 
     public DefaultItemRepository() {
         this.itemsById = new ConcurrentHashMap<>();
+        addItem();
     }
 
     public Item save(Item item) {
         itemsById.put(item.getItemId(), item);
         return item;
+    }
+
+    public void addItem() {
+        Item testItem = new Item("testItem", "testDescription", 0.5, 60);
+        itemsById.put(testItem.getItemId(), testItem);
     }
 
 
@@ -30,8 +37,11 @@ public class DefaultItemRepository implements ItemRepository{
 
     @Override
     public Item getItemByName(String itemName) {
-        //todo
-        return null;
+            return itemsById.values()
+                    .stream()
+                    .filter(item -> item.getItemName().equals(itemName))
+                    .findFirst()
+                    .orElseThrow(UnknownItemException::new);
     }
 
     @Override
@@ -39,6 +49,6 @@ public class DefaultItemRepository implements ItemRepository{
         return itemsById.values().stream()
                 .filter(item -> item.getItemId().toString().equals(uuid.toString()))
                 .findFirst()
-                .orElseThrow(UnknownCustomerException::new);
+                .orElseThrow(UnknownItemException::new);
     }
 }

@@ -1,5 +1,6 @@
 package com.switchfully.eurder.services;
 
+import com.switchfully.eurder.domain.items.Item;
 import com.switchfully.eurder.domain.orders.ItemGroup;
 import com.switchfully.eurder.domain.orders.Order;
 import com.switchfully.eurder.repositories.DefaultItemRepository;
@@ -26,20 +27,28 @@ public class DefaultOrderService implements OrderService {
     private final ItemRepository defaultItemRepository;             //to check shipping date
     private final ItemGroupRepository itemGroupRepository;
     private final OrderRepository orderRepository;
+    private final DefaultItemService defaultItemService;
 
     public DefaultOrderService(ItemGroupMapper itemGroupMapper, OrderMapper orderMapper,
-                               ItemRepository defaultItemRepository, ItemGroupRepository itemGroupRepository, OrderRepository orderRepository) {
+                               ItemRepository defaultItemRepository, ItemGroupRepository itemGroupRepository,
+                               OrderRepository orderRepository, DefaultItemService defaultItemService) {
         this.itemGroupMapper = itemGroupMapper;
         this.orderMapper = orderMapper;
         this.defaultItemRepository = defaultItemRepository;
         this.itemGroupRepository = itemGroupRepository;
         this.orderRepository = orderRepository;
+        this.defaultItemService = defaultItemService;
     }
 
     //todo: order service calc
 
+    public Item convertItemIdToItem(UUID itemId){
+        return defaultItemRepository.getItemById(itemId);
+    }
+
     public double calculateItemGroupPrice(ItemGroup itemGroup){
-        return 0;
+        UUID lookUp = itemGroup.getItemId();
+        return itemGroup.getItemAmount() * convertItemIdToItem(lookUp).getItemPriceInEur();
     }
 
     public LocalDate calculateItemGroupShippingDate(ItemGroup itemGroup){

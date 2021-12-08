@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ItemGroupMapper {
 
-    public ItemGroup convertCreateItemGroupDtoToItem(CreateItemGroupDTO createItemGroupDTO) {
+    public ItemGroup convertCreateItemGroupDtoToItemGroup(CreateItemGroupDTO createItemGroupDTO) {
         ItemGroup output = new ItemGroup(
                 createItemGroupDTO.getUserId(), createItemGroupDTO.getItemId(),
                 createItemGroupDTO.getItemAmount(), createItemGroupDTO.getShippingDate());
