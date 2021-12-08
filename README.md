@@ -19,7 +19,8 @@
   - story 3: added repo's, mappers, order-/itemGroupServices, validator
   - improved test coverage
   - added/extracted OrderService calculations (story 3) + added tests
-  
+
+![Test Logo](https://github.com/CityTropes/30_order/blob/main/src/main/resources/testCoverage.png)
 __________________________________________________________________________________________________
 
 Assignment source: https://github.com/switchfully
