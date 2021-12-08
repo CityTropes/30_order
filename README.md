@@ -18,7 +18,7 @@
   - added UserLoginDecoded, story 3: OrderMapper, ItemGroup, ItemGroupRepo
   - story 3: added repo's, mappers, order-/itemGroupServices, validator
   - improved test coverage
-  - added/extracted OrderService calculations (story 3) + added tests
+  - Refactoring. Added/extracted OrderService calculations (story 3) + added more tests
 
 ![Test Logo](https://github.com/CityTropes/30_order/blob/main/src/main/resources/testCoverage.png)
 __________________________________________________________________________________________________

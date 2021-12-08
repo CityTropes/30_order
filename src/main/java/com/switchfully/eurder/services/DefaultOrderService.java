@@ -1,5 +1,7 @@
 package com.switchfully.eurder.services;
 
+import com.switchfully.eurder.customexceptions.OrderDateException;
+import com.switchfully.eurder.customexceptions.UnknownCustomerException;
 import com.switchfully.eurder.domain.items.Item;
 import com.switchfully.eurder.domain.orders.ItemGroup;
 import com.switchfully.eurder.domain.orders.Order;
@@ -16,6 +18,7 @@ import com.switchfully.eurder.services.mappers.OrderMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,14 +65,18 @@ public class DefaultOrderService implements OrderService {
     }
 
     public double calculateOrderTotalPrice(Order order){
-        return 0;
+        double price = 0;
+        return order.getItemGroups().stream()
+                .map(this::calculateItemGroupPrice)
+                .reduce(price, Double::sum);
     }
 
     public LocalDate calculateOrderShippingDate(Order order){
-
-        return LocalDate.now();
+        return order.getItemGroups().stream()
+                .map(x -> calculateItemGroupShippingDate(itemGroupMapper.convertItemGroupToCreateItemGroupDto(x)))
+                .max(Comparator.naturalOrder())
+                .orElseThrow(OrderDateException::new);
     }
-
 
 
     @Override

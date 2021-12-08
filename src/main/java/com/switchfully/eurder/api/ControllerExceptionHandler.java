@@ -59,6 +59,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         response.sendError(BAD_REQUEST.value(), exception.getMessage());
     }
 
+    @ExceptionHandler(OrderDateException.class)
+    protected void orderDateCalculationError(OrderDateException exception,
+                                             HttpServletResponse response) throws IOException{
+        response.sendError(SERVICE_UNAVAILABLE.value(), exception.getMessage());
+    }
+
     //this happens when someone uses controller without providing header(login & pw), for endpoints with admin/customer difference. I.e. Postman
     @ExceptionHandler(MissingRequestHeaderException.class)
     protected void missingRequestHeaderException(MissingRequestHeaderException exception,
