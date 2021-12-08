@@ -10,11 +10,13 @@ public class CreateItemGroupDTO {
     private final UUID itemId;
     private final int itemAmount;
 
+
     public CreateItemGroupDTO(UUID userId, UUID itemId, int itemAmount) {
         assertAllParamsNotNull(userId, itemId, itemAmount);
         this.userId = userId;
         this.itemId = itemId;
         this.itemAmount = itemAmount;
+
     }
 
     public UUID getUserId() {
@@ -28,4 +30,5 @@ public class CreateItemGroupDTO {
     public int getItemAmount() {
         return itemAmount;
     }
+
 }

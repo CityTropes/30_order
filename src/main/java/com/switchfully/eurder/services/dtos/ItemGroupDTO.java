@@ -12,15 +12,17 @@ public class ItemGroupDTO {                     //itemGroup = element of shoppin
     private final UUID itemId;
     private final int itemAmount;
     private LocalDate shippingDate;
-    private double priceInEur; //todo: calc
+    private double priceInEur;
 
-    public ItemGroupDTO(UUID userId, UUID itemGroupId, UUID itemId, int itemAmount) {
-        assertAllParamsNotNull(userId, itemGroupId, itemId, itemAmount);
+    public ItemGroupDTO(UUID userId, UUID itemGroupId, UUID itemId,
+                        int itemAmount, LocalDate shippingDate, double priceInEur) {
+        assertAllParamsNotNull(userId, itemGroupId, itemId, itemAmount, shippingDate, priceInEur);
         this.userId = userId;
         this.itemGroupId = itemGroupId;
         this.itemId = itemId;
         this.itemAmount = itemAmount;
-        //todo: this.shippingDate = shippingDate;
+        this.shippingDate = shippingDate;
+        this.priceInEur = priceInEur;
     }
 
     public UUID getUserId() {
@@ -41,5 +43,9 @@ public class ItemGroupDTO {                     //itemGroup = element of shoppin
 
     public LocalDate getShippingDate() {
         return shippingDate;
+    }
+
+    public double getPriceInEur() {
+        return priceInEur;
     }
 }

@@ -23,16 +23,16 @@ public class OrderController {
         this.securityService = securityService;
     }
 
-    /* todo: order controller
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<OrderDTO> getAllOrders(@RequestHeader String authorization) {
-        securityService.validateAuthorization(authorization, Feature.SEE_ALL_ORDERS); //only admin can see
+    public List<OrderDTO> seeAllOrders(@RequestHeader String authorization) {
+        securityService.validateAuthorization(authorization, Feature.SEE_ALL_ORDERS);
         return defaultOrderService.getAllOrders();
     }
-     */
 
-    @PostMapping(path = "add-to-shopping-cart", consumes = "application/json")      //only admin
+
+    @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public ItemGroupDTO saveItem(@RequestBody CreateItemGroupDTO createItemGroupDTO, @RequestHeader String authorization) {
         securityService.validateAuthorization(authorization, Feature.ADD_TO_SHOPPING_CART);
@@ -40,7 +40,9 @@ public class OrderController {
         //todo
     }
 
-    //todo: see my shopping cart & confirm/finalize orders
+
+
+    //todo: see my shopping cart & confirm/finalize orders, see all
 
 
 

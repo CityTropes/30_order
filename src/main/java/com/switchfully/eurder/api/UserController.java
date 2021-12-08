@@ -38,12 +38,10 @@ public class UserController {
         return defaultUserService.getUserById(id);
     }
 
-
-    @PostMapping(path = "/register", consumes = "application/json")         //check REST naming conventions
+    @PostMapping(consumes = "application/json")                             //check REST naming conventions
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO registerNewCustomer(@RequestBody CreateUserDTO createUserDTO) {
-        return defaultUserService.save(createUserDTO);                        //no authorization for register new customer
-
+        return defaultUserService.save(createUserDTO);
     }
 
 

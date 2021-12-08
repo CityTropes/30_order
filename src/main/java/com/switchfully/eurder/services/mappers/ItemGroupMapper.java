@@ -17,7 +17,7 @@ public class ItemGroupMapper {
 
     public ItemGroupDTO convertItemGroupToItemGroupDto(ItemGroup savedItemGroup) {
         return new ItemGroupDTO(savedItemGroup.getUserId(), savedItemGroup.getItemGroupId(), savedItemGroup.getItemId(),
-                savedItemGroup.getItemAmount());
+                savedItemGroup.getItemAmount(), savedItemGroup.getShippingDate(), savedItemGroup.getPriceInEur());
     }
 
     public CreateItemGroupDTO convertItemGroupToCreateItemGroupDto(ItemGroup savedItemGroup){

@@ -30,7 +30,7 @@ public class ItemController {
     }
 
 
-    @PostMapping(path = "add-item", consumes = "application/json")      //only admin
+    @PostMapping(consumes = "application/json")      //only admin
     @ResponseStatus(HttpStatus.CREATED)
     public ItemDTO saveItem(@RequestBody CreateItemDTO createItemDTO, @RequestHeader String authorization) {
         securityService.validateAuthorization(authorization, Feature.ADD_NEW_ITEM);

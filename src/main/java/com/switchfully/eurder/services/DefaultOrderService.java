@@ -80,14 +80,17 @@ public class DefaultOrderService implements OrderService {
 
 
     @Override
-    //todo: assert not null and user id exists!
     public ItemGroupDTO save(CreateItemGroupDTO createItemGroupDTO) {
-        return null;
+        ItemGroup newItemGroup = itemGroupMapper.convertCreateItemGroupDtoToItemGroup(createItemGroupDTO);
+        newItemGroup.setShippingDate(calculateItemGroupShippingDate(createItemGroupDTO));
+        newItemGroup.setPriceInEur(calculateItemGroupPrice(newItemGroup));
+        ItemGroup savedItemGroup = itemGroupRepository.save(newItemGroup);
+        return itemGroupMapper.convertItemGroupToItemGroupDto(savedItemGroup);
     }
 
     @Override
     public List<ItemGroup> getAllItemGroups() {
-        return null;
+        return itemGroupRepository.getAllItemGroups();
     }
 
     @Override
@@ -96,6 +99,7 @@ public class DefaultOrderService implements OrderService {
     }
 
     @Override
+    //todo: replace param with createOrderDto
     public OrderDTO save(OrderDTO OrderDTO) {
         return null;
     }
