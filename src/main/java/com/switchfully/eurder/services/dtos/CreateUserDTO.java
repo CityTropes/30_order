@@ -6,7 +6,7 @@ import com.switchfully.eurder.security.Role;
 import java.util.UUID;
 
 public class CreateUserDTO {
-    private final UUID id;
+    private final String userId;
     private final String firstName;
     private final String lastName;
     private final String emailAddress;            //email = login/username
@@ -17,7 +17,7 @@ public class CreateUserDTO {
 
     //nullcheck?
     public CreateUserDTO(String firstName, String lastName, String emailAddress, String phoneNumber, String password, Address address) {
-        this.id = UUID.randomUUID();
+        this.userId = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
@@ -30,8 +30,8 @@ public class CreateUserDTO {
          */
     }
 
-    public UUID getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
     public String getFirstName() {

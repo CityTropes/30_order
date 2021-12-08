@@ -8,14 +8,13 @@ import java.util.UUID;
 public class UserDTO {
 
     private final UUID userId;
-    private String emailLogin;
+    //private String email;
     private final String firsName;
     private final String lastName;
     private final Role role;
 
-    public UserDTO(UUID userId, String emailLogin, String firsName, String lastName, Role role) {
+    public UserDTO(UUID userId, String firsName, String lastName, Role role) {
         this.userId = userId;
-        this.emailLogin = emailLogin;
         this.firsName = firsName;
         this.lastName = lastName;
         this.role = role;
@@ -25,9 +24,6 @@ public class UserDTO {
         return userId;
     }
 
-    public String getEmailLogin() {
-        return emailLogin;
-    }
 
     public String getFirsName() {
         return firsName;
@@ -46,11 +42,11 @@ public class UserDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserDTO userDTO = (UserDTO) o;
-        return userId.equals(userDTO.userId) && emailLogin.equals(userDTO.emailLogin);
+        return userId.equals(userDTO.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, emailLogin);
+        return Objects.hash(userId);
     }
 }

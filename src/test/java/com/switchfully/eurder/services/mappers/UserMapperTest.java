@@ -12,7 +12,7 @@ class UserMapperTest {
 
     UserRepository testRepo = new DefaultUserRepository();
     UserMapper test = new UserMapper();
-    UserDTO testDto = new UserDTO(testRepo.getUser("admin@eurder.com").getId(), testRepo.getUser("admin@eurder.com").getEmailAddress(), "Default", "Admin", Role.ADMIN);
+    UserDTO testDto = new UserDTO(testRepo.getUser("admin@eurder.com").getId(), "Default", "Admin", Role.ADMIN);
     User testAdmin = testRepo.getUser("admin@eurder.com");
 
     @Test

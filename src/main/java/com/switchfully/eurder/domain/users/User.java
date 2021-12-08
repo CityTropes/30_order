@@ -1,6 +1,5 @@
 package com.switchfully.eurder.domain.users;
 
-import com.switchfully.eurder.repositories.DefaultItemGroupRepository;
 import com.switchfully.eurder.security.Role;
 
 import java.util.UUID;
@@ -30,8 +29,6 @@ public class User {
         this.role = Role.CUSTOMER;
         this.password = password;
     }
-
-    //maybe replace with builder (obligated final fields)
 
 
     public UUID getId() {
