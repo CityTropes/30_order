@@ -38,7 +38,7 @@ public class UserValidator {
         return true;
     }
 
-    private void assertNotNullOrEmpty(String input){
+    public void assertNotNullOrEmpty(String input){
         if(input == null || input.trim().equals("")){
             throw new InvalidInputException("The given input can't contain null or empty fields (in user and address)! ");
         }
