@@ -24,6 +24,8 @@ public class SecurityService {
         if(authorization == null) {
             throw new UnauthorizedException();
         }
+
+        //use this to see what user is logged in, instead of asking id
         UserLoginDecoded emailPasswordCombo = extractAndDecodeEmailAndPassword(authorization);
         User user = userRepository.getUser(emailPasswordCombo.getEmail());
         if(user == null) {

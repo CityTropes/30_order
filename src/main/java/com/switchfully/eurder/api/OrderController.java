@@ -32,14 +32,22 @@ public class OrderController {
         return defaultOrderService.getAllOrders();
     }
 
-    @GetMapping(path = "/{userId}")                 //userId/shoppingcart
-    @ResponseStatus(HttpStatus.OK)//seemyitemgroups
+    @GetMapping(path = "/{userId}")                                             //or path userId/shoppingcart //or userId?show-shopping-cart=true
+    @ResponseStatus(HttpStatus.OK)
     public List<ItemGroupDTO> seeMySavedItemGroups(@PathVariable("userId") UUID userId,
                                                    @RequestHeader String authorization){
         securityService.validateAuthorization(authorization, Feature.SEE_MY_ITEMGROUPS);
         return defaultOrderService.getAllMyItemGroups(userId);
     }
 
+    @GetMapping(path = "/{userId}")                                             //shoppingcart?place-order=true
+    @ResponseStatus(HttpStatus.OK)
+    public List<ItemGroupDTO> processMySavedItemGroupsToOrder(@PathVariable("userId") UUID userId,
+                                                              @RequestHeader String authorization){
+        securityService.validateAuthorization(authorization, Feature.FINALIZE_ORDER);
+        return defaultOrderService.getAllMyItemGroups(userId);
+        //change to process order
+    }
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
@@ -49,11 +57,7 @@ public class OrderController {
     }
 
 
-
     //todo: see my shopping cart & confirm/finalize orders, see all
-
-
-
 
 
 

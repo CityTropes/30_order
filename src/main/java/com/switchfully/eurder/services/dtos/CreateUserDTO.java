@@ -5,7 +5,10 @@ import com.switchfully.eurder.security.Role;
 
 import java.util.UUID;
 
+import static com.switchfully.eurder.services.validators.AssertNotNull.assertAllParamsNotNull;
+
 public class CreateUserDTO {
+
     private final String userId;
     private final String firstName;
     private final String lastName;
@@ -15,8 +18,8 @@ public class CreateUserDTO {
     private final Role role;
     private final String password;
 
-    //nullcheck?
     public CreateUserDTO(String firstName, String lastName, String emailAddress, String phoneNumber, String password, Address address) {
+        assertAllParamsNotNull(firstName, lastName,emailAddress,phoneNumber,password,address);
         this.userId = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
