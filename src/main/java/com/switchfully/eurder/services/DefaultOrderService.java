@@ -1,4 +1,4 @@
-package com.switchfully.eurder.services.mappers;
+package com.switchfully.eurder.services;
 
 import com.switchfully.eurder.domain.orders.ItemGroup;
 import com.switchfully.eurder.domain.orders.Order;
@@ -9,6 +9,8 @@ import com.switchfully.eurder.repositories.OrderRepository;
 import com.switchfully.eurder.services.OrderService;
 import com.switchfully.eurder.services.dtos.ItemGroupDTO;
 import com.switchfully.eurder.services.dtos.OrderDTO;
+import com.switchfully.eurder.services.mappers.ItemGroupMapper;
+import com.switchfully.eurder.services.mappers.OrderMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -55,6 +57,7 @@ public class DefaultOrderService implements OrderService {
 
 
     @Override
+    //todo: assert not null and user id exists!
     public ItemGroup save(ItemGroupDTO itemGroupDTO) {
         return null;
     }

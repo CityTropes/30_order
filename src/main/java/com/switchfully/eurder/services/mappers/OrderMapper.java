@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderMapper {
 
-    public Order convertCreateOrderDtoToItem(CreateOrderDTO createOrderDTO) {
+    public Order convertCreateOrderDtoToOrder(CreateOrderDTO createOrderDTO) {
         Order output = new Order(
                 createOrderDTO.getUserID(), createOrderDTO.getItemGroups());
         return output;

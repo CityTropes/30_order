@@ -21,7 +21,7 @@ public class DefaultUserRepository implements UserRepository {
         addAdmin();
     }
 
-    private void addAdmin() {
+    public void addAdmin() {
         Address adminAddress = new Address("Adminstreet", 1, 1000, "Brussels");
         User defaultAdmin = new User("Default", "Admin", "admin@eurder.com", adminAddress, "0476123456", "admin");
         defaultAdmin.promoteRoleToAdmin();
