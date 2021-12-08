@@ -10,8 +10,7 @@ import java.util.UUID;
 
 public interface OrderService {
 
-    List<ItemGroup> getAllItemGroups();
-    List<ItemGroup> getAllItemGroupsByCustomerId(UUID uuid);
+    List<ItemGroupDTO> getAllMyItemGroups(UUID uuid);
     ItemGroupDTO save(CreateItemGroupDTO createItemGroupDTO);                      //itemgroup = shopping cart
 
     OrderDTO save(OrderDTO OrderDTO);

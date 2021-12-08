@@ -21,6 +21,8 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class DefaultOrderService implements OrderService {
@@ -89,13 +91,12 @@ public class DefaultOrderService implements OrderService {
     }
 
     @Override
-    public List<ItemGroup> getAllItemGroups() {
-        return itemGroupRepository.getAllItemGroups();
-    }
-
-    @Override
-    public List<ItemGroup> getAllItemGroupsByCustomerId(UUID uuid) {
-        return null;
+    public List<ItemGroupDTO> getAllMyItemGroups(UUID userId) {
+        //todo: update shipping date and price
+        return itemGroupRepository.getAllItemGroups().stream()
+                .filter(x -> x.getUserId().equals(userId))
+                .map(itemGroupMapper::convertItemGroupToItemGroupDto)
+                .collect(Collectors.toList());
     }
 
     @Override

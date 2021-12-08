@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "orders", produces = "application/json")
@@ -31,13 +32,20 @@ public class OrderController {
         return defaultOrderService.getAllOrders();
     }
 
+    @GetMapping(path = "/{userId}")                 //userId/shoppingcart
+    @ResponseStatus(HttpStatus.OK)//seemyitemgroups
+    public List<ItemGroupDTO> seeMySavedItemGroups(@PathVariable("userId") UUID userId,
+                                                   @RequestHeader String authorization){
+        securityService.validateAuthorization(authorization, Feature.SEE_MY_ITEMGROUPS);
+        return defaultOrderService.getAllMyItemGroups(userId);
+    }
+
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemGroupDTO saveItem(@RequestBody CreateItemGroupDTO createItemGroupDTO, @RequestHeader String authorization) {
+    public ItemGroupDTO saveItemsToShoppingCart(@RequestBody CreateItemGroupDTO createItemGroupDTO, @RequestHeader String authorization) {
         securityService.validateAuthorization(authorization, Feature.ADD_TO_SHOPPING_CART);
         return defaultOrderService.save(createItemGroupDTO);
-        //todo
     }
 
 

@@ -9,6 +9,7 @@ public enum Role {
             REGISTER_NEW_CUSTOMER,
             SEE_ALL_ITEMS,
             ADD_TO_SHOPPING_CART,
+            SEE_MY_ITEMGROUPS,
             FINALIZE_ORDER)),
     ADMIN(List.of(
             SEE_ONE_CUSTOMER,
@@ -18,7 +19,8 @@ public enum Role {
             ADD_NEW_ITEM,
             ADD_TO_SHOPPING_CART,
             FINALIZE_ORDER,
-            SEE_ALL_ORDERS
+            SEE_ALL_ORDERS,
+            SEE_MY_ITEMGROUPS
             ));
 
     private final List<Feature> listOfFeatures;

@@ -8,5 +8,6 @@ public enum Feature {
     ADD_NEW_ITEM,
     ADD_TO_SHOPPING_CART,   //shopping cart = itemGroupRepo
     FINALIZE_ORDER,
-    SEE_ALL_ORDERS
+    SEE_ALL_ORDERS,
+    SEE_MY_ITEMGROUPS
 }

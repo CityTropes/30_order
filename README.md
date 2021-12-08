@@ -20,6 +20,7 @@
   - improved test coverage
   - Refactoring. Added/extracted OrderService calculations (story 3) + added more tests
   - adding shopping cart. Refactoring/adding authorization, roles/features. Refactor/update controllers
+  - Finishing all Must-have stories (1, 2, 3, 7, 8). Refactoring controllers (REST). (added story 10 partially)
 
 ![Test Logo](https://github.com/CityTropes/30_order/blob/main/src/main/resources/testCoverage.png)
 __________________________________________________________________________________________________

@@ -13,6 +13,7 @@ public class ItemGroupDTO {                     //itemGroup = element of shoppin
     private final int itemAmount;
     private LocalDate shippingDate;
     private double priceInEur;
+    private String message;
 
     public ItemGroupDTO(UUID userId, UUID itemGroupId, UUID itemId,
                         int itemAmount, LocalDate shippingDate, double priceInEur) {
@@ -23,6 +24,9 @@ public class ItemGroupDTO {                     //itemGroup = element of shoppin
         this.itemAmount = itemAmount;
         this.shippingDate = shippingDate;
         this.priceInEur = priceInEur;
+        this.message = "--> Your item selection has been added to your shopping cart. (id: " + itemGroupId +") " +
+                "\n\tGo to */orders?checkout-selection=" + itemGroupId + " to order these items. " +
+                "\n\tGo to */orders?checkout-all=" + userId + " (userId) to order all items in shopping cart.";
     }
 
     public UUID getUserId() {
@@ -47,5 +51,9 @@ public class ItemGroupDTO {                     //itemGroup = element of shoppin
 
     public double getPriceInEur() {
         return priceInEur;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
