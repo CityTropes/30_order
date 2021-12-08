@@ -10,14 +10,12 @@ public class ItemGroup {
     private final UUID itemGroupId;
     private final UUID itemId;
     private final int itemAmount;
-    private final LocalDate shippingDate;
 
-    public ItemGroup(UUID userId, UUID itemId, int itemAmount, LocalDate shippingDate) {
-        assertAllParamsNotNull(userId, itemId, itemAmount, shippingDate);
+    public ItemGroup(UUID userId, UUID itemId, int itemAmount) {
+        assertAllParamsNotNull(userId, itemId, itemAmount);
         this.userId = userId;
         this.itemId = itemId;
         this.itemAmount = itemAmount;
-        this.shippingDate = shippingDate;
         this.itemGroupId = UUID.randomUUID();
     }
 
@@ -31,7 +29,4 @@ public class ItemGroup {
         return itemAmount;
     }
 
-    public LocalDate getShippingDate() {
-        return shippingDate;
-    }
 }

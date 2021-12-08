@@ -11,12 +11,12 @@ public class ItemGroupMapper {
     public ItemGroup convertCreateItemGroupDtoToItemGroup(CreateItemGroupDTO createItemGroupDTO) {
         ItemGroup output = new ItemGroup(
                 createItemGroupDTO.getUserId(), createItemGroupDTO.getItemId(),
-                createItemGroupDTO.getItemAmount(), createItemGroupDTO.getShippingDate());
+                createItemGroupDTO.getItemAmount());
         return output;
     }
 
     public ItemGroupDTO convertItemGroupToItemGroupDto(ItemGroup savedItemGroup) {
         return new ItemGroupDTO(savedItemGroup.getUserId(), savedItemGroup.getItemGroupId(), savedItemGroup.getItemId(),
-                savedItemGroup.getItemAmount(), savedItemGroup.getShippingDate());
+                savedItemGroup.getItemAmount());
     }
 }

@@ -8,6 +8,7 @@ import com.switchfully.eurder.repositories.ItemGroupRepository;
 import com.switchfully.eurder.repositories.ItemRepository;
 import com.switchfully.eurder.repositories.OrderRepository;
 import com.switchfully.eurder.services.OrderService;
+import com.switchfully.eurder.services.dtos.CreateItemGroupDTO;
 import com.switchfully.eurder.services.dtos.ItemGroupDTO;
 import com.switchfully.eurder.services.dtos.OrderDTO;
 import com.switchfully.eurder.services.mappers.ItemGroupMapper;
@@ -51,8 +52,13 @@ public class DefaultOrderService implements OrderService {
         return itemGroup.getItemAmount() * convertItemIdToItem(lookUp).getItemPriceInEur();
     }
 
-    public LocalDate calculateItemGroupShippingDate(ItemGroup itemGroup){
-        return LocalDate.now();
+    public LocalDate calculateItemGroupShippingDate(CreateItemGroupDTO createItemGroupDTO){
+        int amountInItemGroup = createItemGroupDTO.getItemAmount();
+        int amountInStock = defaultItemRepository.getItemById(createItemGroupDTO.getItemId()).getAmountInStock();
+        if(amountInItemGroup <= amountInStock){
+            return LocalDate.now().plusDays(1);
+        }
+        return LocalDate.now().plusWeeks(1);
     }
 
     public double calculateOrderTotalPrice(Order order){
@@ -60,6 +66,7 @@ public class DefaultOrderService implements OrderService {
     }
 
     public LocalDate calculateOrderShippingDate(Order order){
+
         return LocalDate.now();
     }
 

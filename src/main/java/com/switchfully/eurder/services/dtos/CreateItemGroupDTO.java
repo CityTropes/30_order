@@ -9,14 +9,12 @@ public class CreateItemGroupDTO {
     private final UUID userId;
     private final UUID itemId;
     private final int itemAmount;
-    private final LocalDate shippingDate;
 
-    public CreateItemGroupDTO(UUID userId, UUID itemId, int itemAmount, LocalDate shippingDate) {
-        assertAllParamsNotNull(userId, itemId, itemAmount, shippingDate);
+    public CreateItemGroupDTO(UUID userId, UUID itemId, int itemAmount) {
+        assertAllParamsNotNull(userId, itemId, itemAmount);
         this.userId = userId;
         this.itemId = itemId;
         this.itemAmount = itemAmount;
-        this.shippingDate = shippingDate;
     }
 
     public UUID getUserId() {
@@ -29,9 +27,5 @@ public class CreateItemGroupDTO {
 
     public int getItemAmount() {
         return itemAmount;
-    }
-
-    public LocalDate getShippingDate() {
-        return shippingDate;
     }
 }

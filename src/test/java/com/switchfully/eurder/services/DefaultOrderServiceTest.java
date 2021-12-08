@@ -36,14 +36,32 @@ class DefaultOrderServiceTest {
 
     @Test
     void calculateItemGroupPrice_isCorrect(){
-
         repo.addItem();
         System.out.println(repo.getItemByName("testItem").getItemDescription());
-
-        CreateItemGroupDTO createItemGroupDTO = new CreateItemGroupDTO(admin.getId(), repo.getItemByName("testItem").getItemId(), 20, LocalDate.now());
+        CreateItemGroupDTO createItemGroupDTO = new CreateItemGroupDTO(admin.getId(), repo.getItemByName("testItem").getItemId(), 20);
         ItemGroup newItemGroup = itemGroupMapper.convertCreateItemGroupDtoToItemGroup(createItemGroupDTO);
 
         Assertions.assertEquals(10, testService.calculateItemGroupPrice(newItemGroup));
+    }
+
+    @Test
+    void calculateItemGroupShippingDate_returnsCorrectDate(){
+        CreateItemGroupDTO testGroupDTO = new CreateItemGroupDTO(admin.getId(), repo.getItemByName("testItem").getItemId(),5);
+        LocalDate ETA = testService.calculateItemGroupShippingDate(testGroupDTO);
+        //ItemGroup testGroup = new ItemGroup(admin.getId(), item.getItemId(), 5);
+
+        System.out.println(ETA);
+        Assertions.assertEquals(ETA, LocalDate.now().plusDays(1));
+    }
+
+    @Test
+    void calculateItemGroupShippingDate_returnsCorrectDate_noStock(){
+        CreateItemGroupDTO testGroupDTO = new CreateItemGroupDTO(admin.getId(), repo.getItemByName("testItem").getItemId(),500);
+        LocalDate ETA = testService.calculateItemGroupShippingDate(testGroupDTO);
+        //ItemGroup testGroup = new ItemGroup(admin.getId(), item.getItemId(), 5);
+
+        System.out.println(ETA);
+        Assertions.assertEquals(ETA, LocalDate.now().plusWeeks(1));
     }
 
     @Test
