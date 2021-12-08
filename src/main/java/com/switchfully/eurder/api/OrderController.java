@@ -40,9 +40,9 @@ public class OrderController {
         return defaultOrderService.getAllMyItemGroups(userId);
     }
 
-    @GetMapping(path = "/{userId}")                                             //shoppingcart?place-order=true
+    @GetMapping(path = "/{userId---tochange}")                                             //shoppingcart?place-order=true
     @ResponseStatus(HttpStatus.OK)
-    public List<ItemGroupDTO> processMySavedItemGroupsToOrder(@PathVariable("userId") UUID userId,
+    public List<ItemGroupDTO> processMySavedItemGroupsToOrder(@PathVariable("userId---tochange") UUID userId,
                                                               @RequestHeader String authorization){
         securityService.validateAuthorization(authorization, Feature.FINALIZE_ORDER);
         return defaultOrderService.getAllMyItemGroups(userId);
