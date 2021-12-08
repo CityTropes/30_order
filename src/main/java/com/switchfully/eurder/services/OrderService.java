@@ -1,6 +1,7 @@
 package com.switchfully.eurder.services;
 
 import com.switchfully.eurder.domain.orders.ItemGroup;
+import com.switchfully.eurder.services.dtos.CreateItemGroupDTO;
 import com.switchfully.eurder.services.dtos.ItemGroupDTO;
 import com.switchfully.eurder.services.dtos.OrderDTO;
 
@@ -11,7 +12,7 @@ public interface OrderService {
 
     List<ItemGroup> getAllItemGroups();
     List<ItemGroup> getAllItemGroupsByCustomerId(UUID uuid);
-    ItemGroup save(ItemGroupDTO itemGroupDTO);                      //itemgroup = shopping cart
+    ItemGroupDTO save(CreateItemGroupDTO createItemGroupDTO);                      //itemgroup = shopping cart
 
     OrderDTO save(OrderDTO OrderDTO);
     List<OrderDTO> getAllOrders();

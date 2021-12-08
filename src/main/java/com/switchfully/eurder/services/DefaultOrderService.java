@@ -81,7 +81,7 @@ public class DefaultOrderService implements OrderService {
 
     @Override
     //todo: assert not null and user id exists!
-    public ItemGroup save(ItemGroupDTO itemGroupDTO) {
+    public ItemGroupDTO save(CreateItemGroupDTO createItemGroupDTO) {
         return null;
     }
 

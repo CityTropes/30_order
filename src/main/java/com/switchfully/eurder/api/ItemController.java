@@ -23,14 +23,14 @@ public class ItemController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)                                          //just a default see-all for admin
-    public List<ItemDTO> getAllItems(@RequestHeader String authorization){
+    @ResponseStatus(HttpStatus.OK)                                          //only admin & registered users
+    public List<ItemDTO> seeAllItems(@RequestHeader String authorization){
         securityService.validateAuthorization(authorization, Feature.SEE_ALL_ITEMS);
         return defaultItemService.getAllItems();
     }
 
 
-    @PostMapping(path = "add-item", consumes = "application/json")
+    @PostMapping(path = "add-item", consumes = "application/json")      //only admin
     @ResponseStatus(HttpStatus.CREATED)
     public ItemDTO saveItem(@RequestBody CreateItemDTO createItemDTO, @RequestHeader String authorization) {
         securityService.validateAuthorization(authorization, Feature.ADD_NEW_ITEM);

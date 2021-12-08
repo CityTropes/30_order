@@ -70,7 +70,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     protected void missingRequestHeaderException(MissingRequestHeaderException exception,
                                                  HttpServletResponse response) throws IOException{
         response.sendError(UNAUTHORIZED.value(),
-                "You are not authorized to see this page. Please use a login & pw for this url. (" + exception.getMessage() + ")");
+                "You are not authorized to see this page. Please use a login & pw for this url (you can resister at */users/register). (" + exception.getMessage() + ")");
     }
 
     //catch-all test

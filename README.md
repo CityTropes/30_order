@@ -19,6 +19,7 @@
   - story 3: added repo's, mappers, order-/itemGroupServices, validator
   - improved test coverage
   - Refactoring. Added/extracted OrderService calculations (story 3) + added more tests
+  - adding shopping cart. Refactoring/adding authorization, roles/features. Refactor/update controllers
 
 ![Test Logo](https://github.com/CityTropes/30_order/blob/main/src/main/resources/testCoverage.png)
 __________________________________________________________________________________________________
