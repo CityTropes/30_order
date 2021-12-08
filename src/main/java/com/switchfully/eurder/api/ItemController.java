@@ -37,6 +37,4 @@ public class ItemController {
         return defaultItemService.save(createItemDTO);
     }
 
-    //todo: exceptions & edge cases!
-
 }

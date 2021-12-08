@@ -1,4 +1,5 @@
 package com.switchfully.eurder.repositories;
+import com.switchfully.eurder.customexceptions.UnknownCustomerException;
 import com.switchfully.eurder.domain.items.Item;
 import org.springframework.stereotype.Repository;
 
@@ -35,7 +36,9 @@ public class DefaultItemRepository implements ItemRepository{
 
     @Override
     public Item getItemById(UUID uuid) {
-        //todo
-        return null;
+        return itemsById.values().stream()
+                .filter(item -> item.getItemId().toString().equals(uuid.toString()))
+                .findFirst()
+                .orElseThrow(UnknownCustomerException::new);
     }
 }

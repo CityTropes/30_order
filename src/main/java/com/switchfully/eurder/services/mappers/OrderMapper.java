@@ -3,7 +3,9 @@ package com.switchfully.eurder.services.mappers;
 import com.switchfully.eurder.domain.orders.Order;
 import com.switchfully.eurder.services.dtos.CreateOrderDTO;
 import com.switchfully.eurder.services.dtos.OrderDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderMapper {
 
     public Order convertCreateOrderDtoToItem(CreateOrderDTO createOrderDTO) {

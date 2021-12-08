@@ -31,7 +31,7 @@ public class User {
         this.password = password;
     }
 
-    //todo: maybe replace with builder (obligated final fields)
+    //maybe replace with builder (obligated final fields)
 
 
     public UUID getId() {

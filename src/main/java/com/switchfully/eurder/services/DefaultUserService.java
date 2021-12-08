@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.switchfully.eurder.services.validators.AssertNotNull.assertAllParamsNotNull;
+
 @Service
 public class DefaultUserService implements UserService {
 
@@ -27,7 +29,7 @@ public class DefaultUserService implements UserService {
 
     @Override
     public UserDTO getUserById(String uuid){
-        //todo: nullchecks
+        assertAllParamsNotNull(uuid);
         User savedUser = defaultUserRepository.getUserById(uuid);
         return userMapper.convertUserToUserDto(savedUser);
     }

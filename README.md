@@ -16,6 +16,7 @@
   - added ItemGroup, Order, order repo, dto. Refactoring aspects, naming + Postman tests
   - tested edge cases and exceptions, implementing story 3 (partially)
   - added UserLoginDecoded, story 3: OrderMapper, ItemGroup, ItemGroupRepo
+  - story 3: added repo's, mappers, order-/itemGroupServices, validator
   
 __________________________________________________________________________________________________
 
