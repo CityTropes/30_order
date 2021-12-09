@@ -41,12 +41,12 @@ public class OrderController {
         return defaultOrderService.getAllMyItemGroups(userId);
     }
 
-    @GetMapping(path = "/{userId}")             //todo: don't use user id here, pass user via authorization?
+    @GetMapping(path = "/changethisurl")             //todo: don't use user id here, pass user via authorization?
     @ResponseStatus(HttpStatus.OK)
-    public List<ItemGroupDTO> processMySavedItemGroupsToOrder(@PathVariable("userId") UUID userId,
-                                                              @RequestHeader String authorization){
+    public List<ItemGroupDTO> processMySavedItemGroupsToOrder(/*@PathVariable("changethisurl") UUID userId,
+                                                             */ @RequestHeader String authorization){
         securityService.validateAuthorization(authorization, Feature.FINALIZE_ORDER);
-        return defaultOrderService.getAllMyItemGroups(userId);
+        return defaultOrderService.getAllMyItemGroups(null);    //this has to be userId
         //change to process order
     }
 
