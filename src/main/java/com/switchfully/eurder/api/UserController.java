@@ -24,17 +24,27 @@ public class UserController {
         this.securityService = securityService;
     }
 
+    //todo: refactor: move security check to services
+
+    //temporary: just for testing purposes -> ok
+    @GetMapping(path = "/testbasiclink")
+    @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
+    public void nothing(){
+        System.out.println("testbasiclink");
+    }
+
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<UserDTO> getAllUsers(@RequestHeader String authorization) {
-        securityService.validateAuthorization(authorization, Feature.SEE_ALL_CUSTOMERS); //only admin can see
+        securityService.validateAuthorization(authorization, Feature.SEE_ALL_CUSTOMERS); //only admin can see all users overview
         return defaultUserService.getAllUsers();
     }
 
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public UserDTO getUserById(@PathVariable("id") String id, @RequestHeader String authorization) {
-        securityService.validateAuthorization(authorization, Feature.SEE_ONE_CUSTOMER); //only admin can see
+        securityService.validateAuthorization(authorization, Feature.SEE_ONE_CUSTOMER);     //only admin can see selected user details
         return defaultUserService.getUserById(id);
     }
 
@@ -44,5 +54,4 @@ public class UserController {
         return defaultUserService.save(createUserDTO);
     }
 
-    //todo: refactor: move security check to services
 }

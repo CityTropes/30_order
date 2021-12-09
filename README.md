@@ -1,28 +1,20 @@
-![Order Logo](https://github.com/CityTropes/30_order/blob/main/src/main/resources/order.png)
-
-
 ## Project status:
-  - init project setup (added dependencies)
-  - init project skeleton (added repository, dto's, services, user mapper, tests)
-  - order: added skeleton controller + postman test
-  - order: Story 2 - added Item, Dto's, Services, Repo, Controller, Tests (todo: tests, validators, authorization)
-  - added authorization, securityservice + Postman test usercontroller (added features, exceptions, handler)
-  - added regex, validator email & test
-  - implemented AspectJ, exception logging via Aspect + Postman tests
-  - added PointCut in Aspects: logging new registrations
-  - story 1, 2, 7, 8 & seeAllItems (with authorization) + basic Postman tests ok (todo: edge cases/exceptions)
-  - fixed exception when no Header is provided (MissingRequestHeaderException), added PointCut to log new items
-  - added custom exceptions, nullcheck in validator, ex handler (todo: refactor handler)
-  - added ItemGroup, Order, order repo, dto. Refactoring aspects, naming + Postman tests
-  - tested edge cases and exceptions, implementing story 3 (partially)
-  - added UserLoginDecoded, story 3: OrderMapper, ItemGroup, ItemGroupRepo
-  - story 3: added repo's, mappers, order-/itemGroupServices, validator
-  - improved test coverage
-  - Refactoring. Added/extracted OrderService calculations (story 3) + added more tests
-  - adding shopping cart. Refactoring/adding authorization, roles/features. Refactor/update controllers
-  - Finishing all Must-have stories (1, 2, 3, 7, 8). Refactoring controllers (REST). (added story 10 partially)
+  - **init project setup** (added dependencies, repository, dto's, services, user mapper, tests)
+  - **order: Story 2** - added Item, Dto's, Services, Repo, Controller, Tests (todo: tests, validators, authorization)
+  - **added authorization**, securityservice + Postman test usercontroller (added features, exceptions, handler)
+  - **implemented AspectJ**, exception logging via Aspect + Postman tests
+  - **Logging:** added PointCuts in Aspects: logging new registrations, log new items, log exceptions ok
+  - **story 1, 2, 7, 8** & seeAllItems (with authorization) + basic Postman tests ok (todo: edge cases/exceptions)
+  - **fixed exception** when no Header is provided (MissingRequestHeaderException)
+  - **added custom exceptions, added regex, validator email** & test, ex handler (todo: refactor handler)
+  - **added ItemGroup, Order**, order repo, dto. Refactoring aspects, naming + Postman tests
+  - **story 3:** OrderMapper, ItemGroup, ItemGroupRepo, repo's, services, validator, added UserLoginDecoded
+  - **improved test coverage** (tested edge cases and exceptions), implementing story 3 (partially))
+  - **Refactoring**. Added/extracted OrderService calculations (story 3) + added more tests
+  - **Refactoring controllers & OrderService**. Finishing all Must-have stories (1, 2, 3, 7, 8). (added story 10 partially)
 
 ![Test Logo](https://github.com/CityTropes/30_order/blob/main/src/main/resources/testCoverage.png)
+![Order Logo](https://github.com/CityTropes/30_order/blob/main/src/main/resources/order.png)
 __________________________________________________________________________________________________
 
 Assignment source: https://github.com/switchfully
