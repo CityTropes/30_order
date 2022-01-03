@@ -12,6 +12,7 @@
   - **improved test coverage** (tested edge cases and exceptions), implementing story 3 (partially))
   - **Refactoring**. Added/extracted OrderService calculations (story 3) + added more tests
   - **Refactoring controllers & OrderService**. Finishing all Must-have stories (1, 2, 3, 7, 8). (added story 10 partially)
+  - **added database, flyway schema's, tests ok**
 
 ![Test Logo](https://github.com/CityTropes/30_order/blob/main/src/main/resources/testCoverage.png)
 ![Order Logo](https://github.com/CityTropes/30_order/blob/main/src/main/resources/order.png)
