@@ -45,7 +45,7 @@ class DefaultOrderServiceTest {
 
         Assertions.assertEquals(10, testService.calculateItemGroupPrice(newItemGroup));
     }
-
+/*
     @Test
     void calculateItemGroupShippingDate_returnsCorrectDate(){
         CreateItemGroupDTO testGroupDTO = new CreateItemGroupDTO(admin.getId(), repo.getItemByName("testItem").getItemId(),5);
@@ -101,6 +101,8 @@ class DefaultOrderServiceTest {
         Assertions.assertEquals(testDate, etaDate);
     }
 
+
+
     @Test
     void calculateOrderShippingDate_returnsCorrectDate_notInStock(){
 
@@ -145,7 +147,7 @@ class DefaultOrderServiceTest {
 
         NullPointerException testException = assertThrows(NullPointerException.class, ()->new Order(admin.getId(), List.of(newItemGroup, null)));
     }
-
+ */
 
     @Test
     void assertExceptionIsThrown_whenItemIsNotFound(){

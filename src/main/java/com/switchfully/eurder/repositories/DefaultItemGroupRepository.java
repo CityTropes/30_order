@@ -1,6 +1,8 @@
 package com.switchfully.eurder.repositories;
 
 import com.switchfully.eurder.customexceptions.UnknownCustomerException;
+import com.switchfully.eurder.customexceptions.UnknownItemException;
+import com.switchfully.eurder.domain.items.Item;
 import com.switchfully.eurder.domain.orders.ItemGroup;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +21,14 @@ public class DefaultItemGroupRepository implements ItemGroupRepository {
         this.itemGroupsById = new ConcurrentHashMap<>();
     }
 
+
+    @Override
+    public ItemGroup getItemGroupById(UUID uuid) {
+        return itemGroupsById.values().stream()
+                .filter(item -> item.getItemGroupId().toString().equals(uuid.toString()))
+                .findFirst()
+                .orElseThrow(UnknownItemException::new);
+    }
 
     @Override
     public List<ItemGroup> getAllItemGroups() {

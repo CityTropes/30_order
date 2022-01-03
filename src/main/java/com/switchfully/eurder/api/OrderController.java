@@ -18,7 +18,8 @@ public class OrderController {
     private final DefaultOrderService defaultOrderService;
     private final SecurityService securityService;
 
-    //todo: finalize checkout order/see all orders & extract service stuff/ refactor!
+    //todo: refactor: move security check to services
+    //todo: finalize checkout order/see all orders & extract service stuff
 
     @Autowired
     public OrderController(DefaultOrderService defaultOrderService, SecurityService securityService) {
@@ -41,7 +42,7 @@ public class OrderController {
         return defaultOrderService.getAllMyItemGroups(userId);
     }
 
-    @GetMapping(path = "/changethisurl")             //todo: don't use user id here, pass user via authorization?
+    @GetMapping(path = "/changethisurl")             //todo: don't use user id here, pass user via authorization?       //url for see my order (or no path), url for checkout
     @ResponseStatus(HttpStatus.OK)
     public List<ItemGroupDTO> processMySavedItemGroupsToOrder(/*@PathVariable("changethisurl") UUID userId,
                                                              */ @RequestHeader String authorization){
@@ -49,6 +50,7 @@ public class OrderController {
         return defaultOrderService.getAllMyItemGroups(null);    //this has to be userId
         //change to process order
     }
+
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)

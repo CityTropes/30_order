@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//todo: refactor: move security check to services
+
 @RestController
 @RequestMapping(path = "items", produces = "application/json")
 public class ItemController {

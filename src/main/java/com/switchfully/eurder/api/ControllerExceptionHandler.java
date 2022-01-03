@@ -65,12 +65,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         response.sendError(SERVICE_UNAVAILABLE.value(), exception.getMessage());
     }
 
-    //this happens when someone uses controller without providing header(login & pw), for endpoints with admin/customer difference. I.e. Postman
+    //this happens when someone does request to controller without providing header (login & pw) I.e. Postman, in browser
     @ExceptionHandler(MissingRequestHeaderException.class)
     protected void missingRequestHeaderException(MissingRequestHeaderException exception,
                                                  HttpServletResponse response) throws IOException{
         response.sendError(UNAUTHORIZED.value(),
-                "You are not authorized to see this page. Please use a login & pw for this url (you can resister at */users/register). (" + exception.getMessage() + ")");
+                "You are not authorized to see this page. ### Please use a login & pw for this url (you can resister at */users/register). ### \n(" + exception.getMessage() + ")");
     }
 
     //catch-all test

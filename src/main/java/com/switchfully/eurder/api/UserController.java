@@ -6,6 +6,7 @@ import com.switchfully.eurder.services.DefaultUserService;
 import com.switchfully.eurder.services.dtos.CreateUserDTO;
 import com.switchfully.eurder.services.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,11 +27,10 @@ public class UserController {
 
     //todo: refactor: move security check to services
 
-    //temporary: just for testing purposes -> ok
-    @GetMapping(path = "/testbasiclink")
+    //temporary: just for testing purposes (no header needed) --- REMOVE LATER
+    @GetMapping(path = "/test-teapot-error")
     @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
-    public void nothing(){
-        System.out.println("testbasiclink");
+    public void testHttpError418Teapot(@RequestHeader(required = false) String authorization){
     }
 
 
@@ -48,7 +48,10 @@ public class UserController {
         return defaultUserService.getUserById(id);
     }
 
-    @PostMapping(consumes = "application/json")                             //check REST naming conventions
+    //todo: add get by email (emails are unique (login) in this app)
+
+
+    @PostMapping(path = "/register", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO registerNewCustomer(@RequestBody CreateUserDTO createUserDTO) {
         return defaultUserService.save(createUserDTO);

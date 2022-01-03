@@ -18,6 +18,7 @@ import com.switchfully.eurder.services.mappers.OrderMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
@@ -57,9 +58,9 @@ public class DefaultOrderService implements OrderService {
         return itemGroup.getItemAmount() * convertItemIdToItem(lookUp).getItemPriceInEur();
     }
 
-    public LocalDate calculateItemGroupShippingDate(CreateItemGroupDTO createItemGroupDTO){
-        int amountInItemGroup = createItemGroupDTO.getItemAmount();
-        int amountInStock = defaultItemRepository.getItemById(createItemGroupDTO.getItemId()).getAmountInStock();
+    public LocalDate calculateItemGroupShippingDate(ItemGroup itemGroup){
+        int amountInItemGroup = itemGroup.getItemAmount();
+        int amountInStock = defaultItemRepository.getItemById(itemGroup.getItemId()).getAmountInStock();
         if(amountInItemGroup <= amountInStock){
             return LocalDate.now().plusDays(1);
         }
@@ -75,7 +76,7 @@ public class DefaultOrderService implements OrderService {
 
     public LocalDate calculateOrderShippingDate(Order order){
         return order.getItemGroups().stream()
-                .map(x -> calculateItemGroupShippingDate(itemGroupMapper.convertItemGroupToCreateItemGroupDto(x)))
+                .map(this::calculateItemGroupShippingDate)
                 .max(Comparator.naturalOrder())
                 .orElseThrow(OrderDateException::new);
     }
@@ -84,15 +85,42 @@ public class DefaultOrderService implements OrderService {
     @Override
     public ItemGroupDTO save(CreateItemGroupDTO createItemGroupDTO) {
         ItemGroup newItemGroup = itemGroupMapper.convertCreateItemGroupDtoToItemGroup(createItemGroupDTO);
-        newItemGroup.setShippingDate(calculateItemGroupShippingDate(createItemGroupDTO));
+        newItemGroup.setShippingDate(calculateItemGroupShippingDate(newItemGroup));
         newItemGroup.setPriceInEur(calculateItemGroupPrice(newItemGroup));
         ItemGroup savedItemGroup = itemGroupRepository.save(newItemGroup);
         return itemGroupMapper.convertItemGroupToItemGroupDto(savedItemGroup);
     }
 
+    /*
+
+    public void updateItemGroupsPriceAndShippingDate(UUID userID){
+        List<ItemGroup> myItemGroups = new ArrayList<>();
+        myItemGroups = itemGroupRepository.getAllItemGroups().stream()
+                .filter(x -> x.getUserId().equals(userID))
+                .collect(Collectors.toList());
+        myItemGroups.stream()
+                .map(this::calculateItemGroupPrice)
+                .collect(Collectors.toList());
+
+
+        myItemGroups.stream()
+                .map(this::calculateItemGroupShippingDate)
+                .collect(Collectors.toList());
+
+        for(ItemGroup itemGroup: myItemGroups){
+            ItemGroup groupToUpdate = itemGroupRepository.getItemGroupById(itemGroup.getItemGroupId());
+            groupToUpdate.setPriceInEur();
+        }
+
+    }
+
+     */
+
+
+
     @Override
     public List<ItemGroupDTO> getAllMyItemGroups(UUID userId) {
-        //todo: update shipping date and price
+        //todo: update shipping date and price ---> method update price&shippingdate
         return itemGroupRepository.getAllItemGroups().stream()
                 .filter(x -> x.getUserId().equals(userId))
                 .map(itemGroupMapper::convertItemGroupToItemGroupDto)

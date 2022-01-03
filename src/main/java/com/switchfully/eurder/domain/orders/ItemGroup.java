@@ -24,9 +24,7 @@ public class ItemGroup {
         this.priceInEur = 0;
     }
 
-    public void setShippingDate(LocalDate shippingDate) {
-        this.shippingDate = shippingDate;
-    }
+    public void setShippingDate(LocalDate shippingDate) { this.shippingDate = shippingDate; }
 
     public void setPriceInEur(double priceInEur) {
         this.priceInEur = priceInEur;
